@@ -210,8 +210,6 @@ export function toSummary(record)                        // -> ListItem（§4-1�
 
 `basic` は PHP 版で Basic 認証のユーザー名を利用者名とするとき．
 
-### 4-4. `GET /api/me` → `{ "email": "staff@example.com", "mode": "access" | "dev" }`
-
 ### 4-5. その他
 - `GET /` と `Public/` 配下: 認証通過後に `env.ASSETS.fetch` で配信し，§1-2(6) のヘッダを上書き付与．
 - 未知の `/api/*`: 404 `not_found`．`POST /api/search` 以外で `GET` 以外: 405．
