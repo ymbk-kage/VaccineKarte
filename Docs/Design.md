@@ -114,11 +114,11 @@ export function mapRows(gridRows)                 // -> VaccineRecord[]
   postalCode, address, phone, desiredVaccine, temperature, lotNumber, disability6064, copayExemption: string,
   note: string|null,
   visitDateIso: string|null, birthDateIso: string|null, ageNumber: number|null,   // parseDate / parseInt の結果
-  flags: { [field]: "red"|"yellow"|"orange" },  // 色が付いた18列のみ
+  flags: { [field]: "red"|"yellow"|"orange" },  // 色が付いた固定19列のみ
   flagLevel: "red"|"yellow"|"orange"|null,      // 行の最悪値（red > orange > yellow）
-  searchText: string }                          // 18列＋備考を normalizeText して "|" で連結
+  searchText: string }                          // 固定19列＋備考を normalizeText して "|" で連結
 ```
-- 18列すべて空の行は捨てる．`gender`（性別）は「男」「女」または空（公費の行だけ記入される）．
+- 固定19列すべて空の行は捨てる．`gender`（性別）は「男」「女」または空（公費の行だけ記入される）．`side`（左右）は職員が記入する文字列をそのまま持つ．
 
 ### 2-4. キャッシュ方針
 
