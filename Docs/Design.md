@@ -104,7 +104,7 @@ export function classifyColor(bg)                 // -> "red"|"yellow"|"orange"|
 export function mapRows(gridRows)                 // -> VaccineRecord[]
 ```
 
-- `validateHeader`: 先頭18セルを trim して `HEADERS` と完全一致でなければ拒否（Python の `ensure_headers` と同じ列ずれ防護．`性別` の無い旧17列レイアウトは `header_mismatch_at_8` で拒否）．19列目は `備考` のときだけ備考として扱い，それ以外の見出しなら備考は `null`．
+- `validateHeader`: 先頭19セルを trim して `HEADERS` と完全一致でなければ拒否する（列ずれ防護．理由は `header_mismatch_at_<列番号>`．例: `性別` の無い表は `header_mismatch_at_8`，`左右` の無い表は `header_mismatch_at_10`）．20列目は `備考` のときだけ備考として扱い，それ以外の見出しなら備考は `null`．
 - `classifyColor` の閾値（0–1 の RGB）: red = r≥0.9 ∧ g≤0.25 ∧ b≤0.25／yellow = r≥0.9 ∧ g≥0.9 ∧ b≤0.25／orange = r≥0.9 ∧ 0.45≤g≤0.75 ∧ b≤0.25／それ以外 `null`．見出し行と備考列の色は無視．
 - `VaccineRecord`:
 
