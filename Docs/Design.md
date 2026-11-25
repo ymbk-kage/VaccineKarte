@@ -85,7 +85,7 @@ PHP 版（§6-2）の置き場は次のとおり．`Php/Private/Config.php` が�
 
 ```
 GET https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}
-  ?ranges={SHEET_NAME}!A1:S&includeGridData=true
+  ?ranges='{SHEET_NAME}'!A1:T&includeGridData=true
   &fields=sheets(properties(title),data(rowData(values(formattedValue,effectiveFormat(backgroundColor)))))
 ```
 
