@@ -180,7 +180,7 @@ export function toSummary(record)                        // -> ListItem（§4-1�
 
 ### 4-1. `POST /api/search`（本文は §3-2 の Query をそのまま JSON で送る）
 
-> **2026-10-16 実装時の修正（Opus 5.5）**: 当初案の `GET /api/records?q=…` は，Workers Logs（observability）がリクエストURLを自動記録するため，アプリのログ原則と無関係に検索語（患者名）がログに残る．検索条件は URL に載せず JSON 本文で送る．`parseQuery` は URLSearchParams でなく本文のオブジェクトを受ける．`Content-Type: application/json` 以外は 400，`Origin` ヘッダがあり自オリジンと違えば 403（CSRF 対策）．`GET` 以外を許すのはこの経路だけ．
+検索条件を `GET /api/records?q=…` のように URL に載せない理由: Workers Logs（observability）や Web サーバのアクセスログはリクエストURLを自動記録するため，アプリのログ原則と無関係に検索語（患者名）がログに残る．検索条件は URL に載せず JSON 本文で送る．`parseQuery` は URLSearchParams でなく本文のオブジェクトを受ける．`Content-Type: application/json` 以外は 400，`Origin` ヘッダがあり自オリジンと違えば 403（CSRF 対策）．`GET` 以外を許すのはこの経路だけ．
 
 ```json
 { "total": 128, "page": 1, "pageSize": 50, "sort": "visitDesc",
