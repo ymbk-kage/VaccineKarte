@@ -110,7 +110,7 @@ export function mapRows(gridRows)                 // -> VaccineRecord[]
 
 ```ts
 { rowNumber: number,            // シートの行番号（1始まり．空行を飛ばしても変わらない安定ID）
-  category, managementNumber, kind, visitDate, name, furigana, birthDate, gender, age, guardianName,
+  category, managementNumber, kind, visitDate, name, furigana, birthDate, gender, age, side, guardianName,
   postalCode, address, phone, desiredVaccine, temperature, lotNumber, disability6064, copayExemption: string,
   note: string|null,
   visitDateIso: string|null, birthDateIso: string|null, ageNumber: number|null,   // parseDate / parseInt の結果
