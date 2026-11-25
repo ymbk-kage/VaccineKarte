@@ -97,10 +97,20 @@ def start_server(port: int, backend: str = "worker") -> tuple[subprocess.Popen, 
         if cache_dir.exists():
             raise SetupError(f"前回のキャッシュを消せません（php が残っている可能性）: {cache_dir}")
         # Load the extensions shared PHP hosting has enabled (a php.ini-less local install loads none of them)
-        php_binary = subprocess.run(["php", "-r", "echo PHP_BINARY;"], capture_output=True, text=True).stdout.strip()
-        ext_flags = ["-d", f"extension_dir={Path(php_binary).parent / 'ext'}"]
-        for ext in ("intl", "mbstring", "openssl", "curl", "gd"):
-            ext_flags += ["-d", f"extension={ext}"]
+        # Only add -d flags for extensions that are not loaded yet: on Linux (setup-php, distro packages) they
+        # come from php.ini/conf.d and forcing extension_dir=<php dir>/ext would break every one of them
+        required_exts = ("intl", "mbstring", "openssl", "curl", "gd")
+        probe = "echo PHP_BINARY, PHP_EOL, implode(',', array_map('strtolower', get_loaded_extensions()));"
+        probe_lines = subprocess.run(["php", "-r", probe], capture_output=True, text=True).stdout.splitlines()
+        php_binary = probe_lines[0].strip() if probe_lines else ""
+        loaded = set(probe_lines[1].split(",")) if len(probe_lines) > 1 else set()
+        missing = [ext for ext in required_exts if ext not in loaded]
+        ext_flags = []
+        if missing:
+            # A php.ini-less Windows install: point at the bundled ext/ folder and load what is missing
+            ext_flags = ["-d", f"extension_dir={Path(php_binary).parent / 'ext'}"]
+            for ext in missing:
+                ext_flags += ["-d", f"extension={ext}"]
         command = ["php", *ext_flags, "-S", f"127.0.0.1:{port}", str(PHP_ROUTER)]
         # Drop every inherited VACCINE_* setting (e.g. a real key path) and pin the key path to a file that
         # does not exist, so no request can ever reach the real sheet; caches and logs go to logs/
