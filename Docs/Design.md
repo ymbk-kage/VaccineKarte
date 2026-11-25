@@ -418,7 +418,9 @@ Php/
 
 `SheetSource` は fetch を注入して，キャッシュ TTL・同時取得の一本化・stale 10分の境界を `Worker.test.js` に含める．
 
-### 7-2. E2E（`python Tests/E2E/RunE2E.py`，Playwright Python，`wrangler dev --local --port 8798` を子プロセスで起動）
+### 7-2. E2E（`python Tests/E2E/RunE2E.py [--backend worker|php]`，Playwright Python）
+
+既定（`--backend worker`）は `wrangler dev --local` を，`--backend php` は PHP 組み込みサーバ＋`Php/Tools/DevRouter.php` を，どちらもフィクスチャモードで子プロセスとして起動し，同じシナリオを流す（PHP 版の前に `node Php/Tools/ExportFixture.mjs` を実行しておく）．ポートは `--port`（既定 8798）．
 
 | # | シナリオ | 期待 |
 |---|---|---|
