@@ -200,8 +200,15 @@ export function toSummary(record)                        // -> ListItem（§4-1�
 ```json
 { "total": 128, "flagged": 9, "fetchedAt": "...", "stale": false,
   "kinds": ["インフルエンザ","コロナ"], "categories": ["任意","公費"],
-  "visitDateRange": { "min": "2026-10-01", "max": "2026-10-15" } }
+  "visitDateRange": { "min": "2026-10-01", "max": "2026-10-15" },
+  "attachmentFolder": "VaccineFormFiles" }
 ```
+
+- `attachmentFolder` は設定値（Worker は `ATTACHMENT_FOLDER_NAME`，PHP 版は `attachmentFolder`）をそのまま返す．未設定なら空文字列．集計関数 `computeMeta`（純関数）には入れず，App 層（`Src/App.js`・`Php/Private/Lib/App.php`）が応答に足す．画面側（`Public/Api.js`）はこの値から `attachment_unavailable` の文言を組み立てる（§10-3）．
+
+### 4-4. `GET /api/me` → `{ "email": "staff@example.com", "mode": "access" | "dev" | "basic" }`
+
+`basic` は PHP 版で Basic 認証のユーザー名を利用者名とするとき．
 
 ### 4-4. `GET /api/me` → `{ "email": "staff@example.com", "mode": "access" | "dev" }`
 
