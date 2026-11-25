@@ -155,6 +155,9 @@ const URLS = [
   `https://ｄｒｉｖｅ.google.com/file/d/${ID}/view`, `https://drive。google。com/file/d/${ID}`, `https://drive%2Egoogle.com/file/d/${ID}`,
   `https://DRIVE.GOOGLE.COM./file/d/${ID}`, `https://docs.google.com/uc?id=${ID}`, `https://drive.google.com.:443/file/d/${ID}`,
   "https://日本語.jp/path", "https://bücher.example/ä?ö#ü", "https://xn--bcher-kva.example/", "https://xn--a.com/", "https://-a-.com/",
+  // ACE labels: valid, malformed, ASCII-only, control-char and overflow cases (decided by hasValidAceLabels, not the URL parser)
+  "https://xn--wgv71a119e.jp/", "https://XN--BCHER-KVA.example/", "https://xn--.com/", "https://xn--abc-.com/", "https://xn--abc.com/",
+  "https://xn--zzzzzzzzzzzzzzzzzzzzzz.com/", "https://a.xn--bcher-kva.xn--a.com/", "https://xn--ls8h.example/",
   "https://a_b.com/", "https://a..b/", "https://ab--c.com/", "https://a%25b.com/", "https://a b.com/", "https://a<b.com/",
   "https://0x7f.1/", "https://1.2.3.4./", "https://a.123/", "https://127.0.0.1:443/x", "https://4294967295/", "https://4294967296/",
   "https://0x/", "https://a.0x/", "https://1.256/", "https://1.2.3.256/", "https://017.0.0.1/", "https://09.0.0.1/",

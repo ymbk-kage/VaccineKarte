@@ -23,6 +23,102 @@ const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
 // Path form of a Drive file link: /file/d/<id> optionally followed by more segments
 const FILE_PATH_RE = '/^\/file\/d\/([^\/]+)(?:\/.*)?$/D';
 
+// RFC 3492 (Punycode) parameters used to decode "xn--" labels
+const PUNY_BASE = 36;
+const PUNY_TMIN = 1;
+const PUNY_TMAX = 26;
+const PUNY_SKEW = 38;
+const PUNY_DAMP = 700;
+const PUNY_INITIAL_BIAS = 72;
+const PUNY_INITIAL_N = 128;
+
+/**
+ * RFC 3492 bias adaptation.
+ */
+function punyAdapt(int $delta, int $numPoints, bool $firstTime): int
+{
+    // Scale the delta down (more on the first pass) and spread it over the output length
+    $d = $firstTime ? intdiv($delta, PUNY_DAMP) : intdiv($delta, 2);
+    $d += intdiv($d, $numPoints);
+    $k = 0;
+    // Shrink the delta until it fits the threshold, counting the steps
+    while ($d > intdiv((PUNY_BASE - PUNY_TMIN) * PUNY_TMAX, 2)) {
+        $d = intdiv($d, PUNY_BASE - PUNY_TMIN);
+        $k += PUNY_BASE;
+    }
+    return $k + intdiv((PUNY_BASE - PUNY_TMIN + 1) * $d, $d + PUNY_SKEW);
+}
+
+/**
+ * Decode the part of an ACE label after "xn--" into code points (null when malformed).
+ * @return int[]|null
+ */
+function punycodeDecode(string $input): ?array
+{
+    // The basic (ASCII) code points come before the last "-"
+    $split = strrpos($input, '-');
+    $split = $split === false ? -1 : $split;
+    $output = [];
+    for ($j = 0; $j < max($split, 0); $j++) $output[] = ord($input[$j]);
+    $pos = $split > 0 ? $split + 1 : 0;
+    $length = strlen($input);
+    $n = PUNY_INITIAL_N;
+    $i = 0;
+    $bias = PUNY_INITIAL_BIAS;
+    // Each pass decodes one generalized variable-length integer and inserts one code point
+    while ($pos < $length) {
+        $oldI = $i;
+        $w = 1;
+        for ($k = PUNY_BASE; ; $k += PUNY_BASE) {
+            // Running out of digits mid-number is malformed
+            if ($pos >= $length) return null;
+            $c = ord($input[$pos++]);
+            // Digits are a-z (0-25) then 0-9 (26-35); anything else is malformed
+            $digit = ($c >= 97 && $c <= 122) ? $c - 97 : (($c >= 48 && $c <= 57) ? $c - 22 : -1);
+            if ($digit < 0) return null;
+            $i += $digit * $w;
+            // Guard against overflow (well past any valid code point)
+            if ($i > 0x7fffffff) return null;
+            $t = $k <= $bias ? PUNY_TMIN : ($k >= $bias + PUNY_TMAX ? PUNY_TMAX : $k - $bias);
+            if ($digit < $t) break;
+            $w *= PUNY_BASE - $t;
+        }
+        $count = count($output) + 1;
+        $bias = punyAdapt($i - $oldI, $count, $oldI === 0);
+        $n += intdiv($i, $count);
+        $i %= $count;
+        // Beyond Unicode is malformed
+        if ($n > 0x10FFFF) return null;
+        array_splice($output, $i, 0, [$n]);
+        $i++;
+    }
+    return $output;
+}
+
+/**
+ * True when every "xn--" label of the host decodes to a usable Unicode label (same rule as Src/Attachments.js).
+ */
+function hasValidAceLabels(string $hostname): bool
+{
+    foreach (explode('.', strtolower($hostname)) as $label) {
+        // Only ACE labels need checking
+        if (!str_starts_with($label, 'xn--')) continue;
+        $points = punycodeDecode(substr($label, 4));
+        if ($points === null || $points === []) return false;
+        $nonAscii = false;
+        foreach ($points as $p) {
+            // Allowed: ASCII letters, digits and "-", or non-surrogate code points from U+00A0 up
+            $ascii = ($p >= 97 && $p <= 122) || ($p >= 48 && $p <= 57) || $p === 45;
+            $wide = $p >= 0xA0 && ($p < 0xD800 || $p > 0xDFFF);
+            if (!$ascii && !$wide) return false;
+            if ($wide) $nonAscii = true;
+        }
+        // An ACE label must actually encode something beyond ASCII
+        if (!$nonAscii) return false;
+    }
+    return true;
+}
+
 /**
  * Parse a URL string safely; only https URLs are returned (others are useless to every caller).
  * @return array{protocol:string, href:string, hostname:string, pathname:string, query:?string}|null
@@ -32,7 +128,9 @@ function safeUrl(mixed $value): ?array
     // Only non-blank strings can be links
     if (!is_string($value) || jsTrim($value) === '') return null;
     // Parse the JS-trimmed text
-    return parseHttpsUrl(jsTrim($value));
+    $parsed = parseHttpsUrl(jsTrim($value));
+    // Malformed "xn--" labels are rejected by an explicit rule instead of relying on the ICU version
+    return $parsed !== null && hasValidAceLabels($parsed['hostname']) ? $parsed : null;
 }
 
 /**

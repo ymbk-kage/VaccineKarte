@@ -9574,6 +9574,118 @@
   {
    "fn": "parseDriveFileId",
    "input": [
+    "https://xn--wgv71a119e.jp/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://xn--wgv71a119e.jp/"
+   ],
+   "output": "{\"kind\":\"external\",\"url\":\"https://xn--wgv71a119e.jp/\"}"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://XN--BCHER-KVA.example/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://XN--BCHER-KVA.example/"
+   ],
+   "output": "{\"kind\":\"external\",\"url\":\"https://xn--bcher-kva.example/\"}"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://xn--.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://xn--.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://xn--abc-.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://xn--abc-.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://xn--abc.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://xn--abc.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://xn--zzzzzzzzzzzzzzzzzzzzzz.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://xn--zzzzzzzzzzzzzzzzzzzzzz.com/"
+   ],
+   "output": "{\"kind\":\"external\",\"url\":\"https://xn--zzzzzzzzzzzzzzzzzzzzzz.com/\"}"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://a.xn--bcher-kva.xn--a.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://a.xn--bcher-kva.xn--a.com/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
+    "https://xn--ls8h.example/"
+   ],
+   "output": "null"
+  },
+  {
+   "fn": "classifyLink",
+   "input": [
+    "https://xn--ls8h.example/"
+   ],
+   "output": "{\"kind\":\"external\",\"url\":\"https://xn--ls8h.example/\"}"
+  },
+  {
+   "fn": "parseDriveFileId",
+   "input": [
     "https://a_b.com/"
    ],
    "output": "null"

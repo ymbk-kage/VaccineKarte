@@ -16,6 +16,94 @@ export const MAX_ATTACHMENT_BYTES = 20 * 1024 * 1024;
 // Path form of a Drive file link: /file/d/<id> optionally followed by more segments
 const FILE_PATH_RE = /^\/file\/d\/([^/]+)(?:\/.*)?$/;
 
+// RFC 3492 (Punycode) parameters used to decode "xn--" labels
+const PUNY = { base: 36, tMin: 1, tMax: 26, skew: 38, damp: 700, initialBias: 72, initialN: 128 };
+
+/**
+ * RFC 3492 bias adaptation.
+ * @param {number} delta
+ * @param {number} numPoints
+ * @param {boolean} firstTime
+ * @returns {number}
+ */
+function punyAdapt(delta, numPoints, firstTime) {
+  // Scale the delta down (more on the first pass) and spread it over the output length
+  let d = firstTime ? Math.floor(delta / PUNY.damp) : Math.floor(delta / 2);
+  d += Math.floor(d / numPoints);
+  let k = 0;
+  // Shrink the delta until it fits the threshold, counting the steps
+  while (d > ((PUNY.base - PUNY.tMin) * PUNY.tMax) / 2) {
+    d = Math.floor(d / (PUNY.base - PUNY.tMin));
+    k += PUNY.base;
+  }
+  return k + Math.floor(((PUNY.base - PUNY.tMin + 1) * d) / (d + PUNY.skew));
+}
+
+/**
+ * Decode the part of an ACE label after "xn--" into code points (null when malformed).
+ * @param {string} input
+ * @returns {number[]|null}
+ */
+function punycodeDecode(input) {
+  // The basic (ASCII) code points come before the last "-"
+  const split = input.lastIndexOf("-");
+  const output = [];
+  for (let j = 0; j < Math.max(split, 0); j += 1) output.push(input.charCodeAt(j));
+  let pos = split > 0 ? split + 1 : 0;
+  let n = PUNY.initialN;
+  let i = 0;
+  let bias = PUNY.initialBias;
+  // Each pass decodes one generalized variable-length integer and inserts one code point
+  while (pos < input.length) {
+    const oldI = i;
+    let w = 1;
+    for (let k = PUNY.base; ; k += PUNY.base) {
+      // Running out of digits mid-number is malformed
+      if (pos >= input.length) return null;
+      const c = input.charCodeAt(pos++);
+      // Digits are a-z (0-25) then 0-9 (26-35); anything else is malformed
+      const digit = c >= 97 && c <= 122 ? c - 97 : c >= 48 && c <= 57 ? c - 22 : -1;
+      if (digit < 0) return null;
+      i += digit * w;
+      // Guard against overflow (well past any valid code point)
+      if (i > 0x7fffffff) return null;
+      const t = k <= bias ? PUNY.tMin : k >= bias + PUNY.tMax ? PUNY.tMax : k - bias;
+      if (digit < t) break;
+      w *= PUNY.base - t;
+    }
+    const length = output.length + 1;
+    bias = punyAdapt(i - oldI, length, oldI === 0);
+    n += Math.floor(i / length);
+    i %= length;
+    // Beyond Unicode is malformed
+    if (n > 0x10ffff) return null;
+    output.splice(i, 0, n);
+    i += 1;
+  }
+  return output;
+}
+
+/**
+ * True when every "xn--" label of the host decodes to a usable Unicode label.
+ * Decided here instead of by the URL parser, whose verdict differs between runtime versions.
+ * @param {string} hostname  ASCII (already punycoded) host
+ * @returns {boolean}
+ */
+export function hasValidAceLabels(hostname) {
+  for (const label of String(hostname).toLowerCase().split(".")) {
+    // Only ACE labels need checking
+    if (!label.startsWith("xn--")) continue;
+    const points = punycodeDecode(label.slice(4));
+    if (!points || points.length === 0) return false;
+    // Allowed: ASCII letters, digits and "-", or non-surrogate code points from U+00A0 up
+    const allowed = (p) => (p >= 97 && p <= 122) || (p >= 48 && p <= 57) || p === 45 || (p >= 0xa0 && (p < 0xd800 || p > 0xdfff));
+    if (!points.every(allowed)) return false;
+    // An ACE label must actually encode something beyond ASCII
+    if (!points.some((p) => p >= 0xa0)) return false;
+  }
+  return true;
+}
+
 /**
  * Parse a URL string safely.
  * @param {unknown} value
@@ -25,7 +113,9 @@ function safeUrl(value) {
   // Only strings can be links
   if (typeof value !== "string" || value.trim() === "") return null;
   try {
-    return new URL(value.trim());
+    const parsed = new URL(value.trim());
+    // Malformed "xn--" labels are rejected the same way on every runtime (and in the PHP port)
+    return hasValidAceLabels(parsed.hostname) ? parsed : null;
   } catch {
     return null;
   }

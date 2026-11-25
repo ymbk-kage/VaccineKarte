@@ -1,7 +1,7 @@
 // Unit tests for Src/Attachments.js (Design §10-2)
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseDriveFileId, classifyLink, extractCellLinks, buildAttachments, DRIVE_ID_RE } from "../../Src/Attachments.js";
+import { parseDriveFileId, classifyLink, extractCellLinks, buildAttachments, DRIVE_ID_RE, hasValidAceLabels } from "../../Src/Attachments.js";
 import { ATTACHMENT_COLUMNS } from "../../Src/Records.js";
 
 // A syntactically valid synthetic Drive id
@@ -86,4 +86,16 @@ test("buildAttachments labels the 20th column as 備考 and handles empty rows",
   assert.deepEqual(buildAttachments(cells, ATTACHMENT_COLUMNS).attachments, [{ index: 0, field: "note", label: "備考のリンク", kind: "external", url: "https://example.com/n" }]);
   assert.deepEqual(buildAttachments([], ATTACHMENT_COLUMNS), { attachments: [], fileIds: [] });
   assert.deepEqual(buildAttachments(undefined, ATTACHMENT_COLUMNS), { attachments: [], fileIds: [] });
+});
+
+test("xn-- labels are judged by an explicit rule, not by the runtime URL parser", () => {
+  // Valid ACE labels (bücher, 日本語) pass and keep their canonical form
+  assert.equal(hasValidAceLabels("xn--bcher-kva.example"), true);
+  assert.equal(hasValidAceLabels("xn--wgv71a119e.jp"), true);
+  assert.equal(hasValidAceLabels("plain.example"), true);
+  // Malformed: decodes to U+0080, empty payload, dangling digits, ASCII-only payload
+  for (const host of ["xn--a.com", "xn--.com", "xn--abc-.com", "a.xn--bcher-kva.xn--a.com"]) assert.equal(hasValidAceLabels(host), false, host);
+  // classifyLink drops such links on every Node version (CI once disagreed with local Node)
+  assert.equal(classifyLink("https://xn--a.com/"), null);
+  assert.deepEqual(classifyLink("https://xn--bcher-kva.example/"), { kind: "external", url: "https://xn--bcher-kva.example/" });
 });
