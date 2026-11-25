@@ -1,11 +1,11 @@
 # ワクチン予診票データベース 検索ポータル 設計書（v1）
 
-作成日: 2026-10-16／対象: `VaccineOcrDatabase/SearchPortal/`／状態: 実装前の確定設計
+対象: リポジトリ直下（`VaccineKarte/`）．Worker 版は `Src/`＋`Public/`，共用 PHP サーバ版は `Php/`＋`Public/`．
 
 ## 0. 結論（一枚要約）
 
-- **何を作るか**: `患者管理`（旧 `シート1`．2026-10-16 時点の実シート名） の予診票DBを，受付PCとスマホから検索・閲覧するだけの読み取り専用Webアプリ．スプレッドシートの見た目を一切持ち込まない．
-- **どこで動くか**: Cloudflare Workers（`vaccine.example.org`，Custom Domain）．静的画面も API も同じ Worker が配り，`run_worker_first = true` で全リクエストを認証ゲートに通す．
+- **何を作るか**: Google スプレッドシートのワークシート（既定名 `患者管理`．設定で変更可）にある予診票DBを，受付PCとスマホから検索・閲覧するだけの読み取り専用Webアプリ．スプレッドシートの見た目を一切持ち込まない．
+- **どこで動くか**: Cloudflare Workers（`vaccine.example.org`，Custom Domain）．静的画面も API も同じ Worker が配り，`run_worker_first = true` で全リクエストを認証ゲートに通す．Workers を使えない環境向けに，同じ API を PHP に移植した共用レンタルサーバ版（Apache の Basic 認証の背後で動く）も用意する（§6-2）．
 - **誰が入れるか**: Cloudflare Access（メールOTP，許可リスト）．加えて Worker 内で `Cf-Access-Jwt-Assertion` を検証する二重化．設定未完了なら全拒否（fail-closed）．
 - **データはどう流れるか**: Worker がサービスアカウントで Sheets API を読み，60秒だけアイソレート内メモリに保持．検索はサーバ側で行い，ブラウザには一致分（1ページ50件の要約）しか渡さない．
 - **検索の仕様**: 既存 `検索` シートと同等以上（AND・空欄無視・正規化部分一致・日付/年齢範囲・種別/区分完全一致）＋全項目横断キーワード＋「要確認のみ」．
