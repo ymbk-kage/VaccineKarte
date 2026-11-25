@@ -556,7 +556,8 @@ def s15_unavailable_error(page: Page, base: str, fx: dict) -> None:
     drawer = page.get_by_test_id("drawer")
     card = drawer.get_by_test_id("attachment-error")
     expect(card).to_be_visible()
-    expect(card).to_contain_text("VaccineFormFiles")
+    # No folder name is configured in the E2E servers, so the default wording names "the shared folder"
+    expect(card).to_contain_text("共有フォルダ")
     link = drawer.get_by_test_id("attachment-drive-link")
     expect(link).to_have_attribute("href", spec["url"])
     expect(link).to_have_attribute("target", "_blank")
