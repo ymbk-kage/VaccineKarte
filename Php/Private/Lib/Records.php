@@ -8,7 +8,7 @@ require_once __DIR__ . '/JsCompat.php';
 require_once __DIR__ . '/Normalize.php';
 require_once __DIR__ . '/Attachments.php';
 
-// Expected first 19 headers of the 患者管理 sheet (formerly シート1; must match SheetGateway.HEADERS; 左右 added 2026-10-26)
+// Expected first 19 headers of the records sheet (default name 患者管理); same list as HEADERS in Src/Records.js
 const HEADERS = ['区分', '管理番号', '種別', '受診日', '氏名', 'ふりがな', '生年月日', '性別', '年齢', '左右', '保護者署名',
     '郵便番号', '住所', '電話番号', '希望ワクチン', '体温', 'LOT No.', '60～64歳の方', '自己負担免除対象者'];
 

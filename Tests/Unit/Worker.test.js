@@ -401,7 +401,7 @@ test("SheetSource shares one in-flight refresh between concurrent callers", asyn
   assert.ok(results.every((r) => r.records.length === EX.total));
 });
 
-test("SheetSource abandons an orphaned refresh that never settles (cancelled request, 2026-10-16 hang)", async () => {
+test("SheetSource abandons an orphaned refresh that never settles (cancelled request hang)", async () => {
   let clock = 0;
   const logs = [];
   let calls = 0;

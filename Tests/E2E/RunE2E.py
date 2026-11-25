@@ -2,7 +2,7 @@
 
 Starts `wrangler dev --local --env local` in fixture mode (synthetic data only, no real PII),
 drives the page with Playwright and checks the 17 scenarios. On failure, the page HTML, a
-screenshot and the raw HTTP results are saved under SearchPortal/logs/. The exit code is the
+screenshot and the raw HTTP results are saved under logs/. The exit code is the
 number of failed scenarios (2 = setup failure before any scenario ran is reported as 100).
 
 Usage:
@@ -34,7 +34,7 @@ from pathlib import Path
 
 from playwright.sync_api import Page, expect, sync_playwright
 
-# Project root (SearchPortal/)
+# Project root (repository root)
 PROJECT_DIR = Path(__file__).resolve().parents[2]
 # Failure evidence folder (gitignored because pages may contain data)
 LOG_DIR = PROJECT_DIR / "logs"

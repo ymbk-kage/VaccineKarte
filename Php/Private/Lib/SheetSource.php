@@ -16,8 +16,8 @@ const CACHE_TTL_MS = 60 * 1000;
 const STALE_LIMIT_MS = 10 * 60 * 1000;
 // Pause between refresh attempts after a failure (avoids hammering Google on every request)
 const RETRY_BACKOFF_MS = 10 * 1000;
-// Rows fetched per Sheets API call. Decoding the whole grid at once needed ~240 MB for 7,384 rows and
-// exhausted the shared host's PHP memory_limit (2026-11-21); one band of this size decodes to about 30-40 MB.
+// Rows fetched per Sheets API call. Decoding the whole grid at once needed ~240 MB for about 7,400 rows and
+// can exceed a shared host's PHP memory_limit; one band of this size decodes to about 30-40 MB.
 const SHEET_CHUNK_ROWS = 1000;
 // Bands downloaded concurrently. Only their raw JSON text (~1-2 MB each) is held together; decoding stays
 // one band at a time. Sequential bands took ~10 s for 7,384 rows versus ~3.5 s for the old single call.

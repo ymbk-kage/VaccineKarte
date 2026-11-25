@@ -2,7 +2,7 @@
 
 Cloudflare Worker の純粋ロジック（`Src/Normalize.js`・`Src/Attachments.js`・`Src/Records.js`・`Src/Search.js`）と，共用サーバー用 PHP 移植版（`Php/Private/Lib/*.php`）が同じ入力に対して**バイト単位で同じ JSON** を返すことを確かめるテストです．
 
-## 実行方法（SearchPortal 直下で）
+## 実行方法（リポジトリ直下で）
 
 ```
 node Php/Tests/Parity/GenerateGolden.mjs

@@ -389,7 +389,7 @@ const SECTIONS = [
     // Sex column inserted right after 生年月日 on the sheet (filled for 公費 rows only)
     { key: 'gender', label: '性別' },
     { key: 'age', label: '年齢' },
-    // Left/right column inserted right after 年齢 on the sheet (2026-10-26, entered by staff)
+    // Left/right column, right after 年齢 on the sheet (entered by staff)
     { key: 'side', label: '左右' },
   ] },
   { title: '連絡先', fields: [

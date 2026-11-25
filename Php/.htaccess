@@ -34,8 +34,8 @@ RewriteRule ^Private(/|$) - [F,L]
 # Every /api/ path goes to the front controller (the Worker's routing lives in Private/Lib/App.php)
 RewriteRule ^api/ Api.php [L]
 
-# Nothing from this site may be kept by the shared host's front-end cache or the browser (a .json without this header
-# was cached and kept being served after deletion, 2026-10-20). Api.php sends the same value itself.
+# Nothing from this site may be kept by the shared host's front-end cache or the browser (without this header a
+# deleted file can keep being served from that cache). Api.php sends the same value itself.
 Header always set Cache-Control "no-store"
 
 # Static files get the same security headers as the Worker sent (Api.php sets its own)

@@ -2,7 +2,7 @@
 //
 // Why a time limit: Workers cancels the outbound I/O of a request once that request is cancelled (e.g. the
 // browser tab closes). A promise started by that request then never settles, and every later request that
-// joined it would wait forever (observed 2026-10-16: /api/search and /api/meta hung 87 s with no log line).
+// joined it would wait forever (/api/search and /api/meta were seen hanging for 87 s with no log line).
 // Each caller therefore waits at most maxAgeMs, and an entry older than maxAgeMs is abandoned and restarted.
 
 // Upper bound for one outbound call to Google or Access (headers + body)

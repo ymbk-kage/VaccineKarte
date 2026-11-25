@@ -48,10 +48,10 @@ test("validateHeader rejects mismatches and the legacy 12-column layout", () => 
   assert.equal(validateHeader([]).ok, false);
 });
 
-// The 19-column layout with 左右 inserted right after 年齢 (column J, 2026-10-26), spelled out literally
+// The 19-column layout with 左右 right after 年齢 (column J), spelled out literally
 const NEW_LAYOUT = ["区分", "管理番号", "種別", "受診日", "氏名", "ふりがな", "生年月日", "性別", "年齢", "左右", "保護者署名",
   "郵便番号", "住所", "電話番号", "希望ワクチン", "体温", "LOT No.", "60～64歳の方", "自己負担免除対象者"];
-// The 18-column layout of 2026-10-17..2026-10-26 (性別 present, no 左右)
+// The older 18-column layout (性別 present, no 左右)
 const SEX_LAYOUT = NEW_LAYOUT.filter((header) => header !== "左右");
 // The 17-column layout before that (no 性別; 年齢 directly after 生年月日)
 const OLD_LAYOUT = SEX_LAYOUT.filter((header) => header !== "性別");
@@ -107,7 +107,7 @@ test("fixture fills 左右 on the expected rows and keeps the columns after it a
 });
 
 test("classifyColor thresholds", () => {
-  // Pure colours as written by SheetGateway / conditional formatting
+  // Pure colours as written by an upstream tool or conditional formatting
   assert.equal(classifyColor({ red: 1 }), "red");
   assert.equal(classifyColor({ red: 1, green: 1 }), "yellow");
   assert.equal(classifyColor({ red: 1, green: 0.6 }), "orange");

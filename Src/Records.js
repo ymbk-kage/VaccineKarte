@@ -2,8 +2,8 @@
 import { normalizeText, parseDate, parseAge } from "./Normalize.js";
 import { buildAttachments } from "./Attachments.js";
 
-// Expected first 19 headers of the 患者管理 sheet (formerly シート1; must match SheetGateway.HEADERS).
-// 性別 was inserted right after 生年月日, then 左右 right after 年齢 (2026-10-26); older layouts are rejected by validateHeader.
+// Expected first 19 headers of the records sheet (default name 患者管理).
+// 性別 sits right after 生年月日 and 左右 right after 年齢; older layouts without them are rejected by validateHeader.
 export const HEADERS = ["区分", "管理番号", "種別", "受診日", "氏名", "ふりがな", "生年月日", "性別", "年齢", "左右", "保護者署名",
   "郵便番号", "住所", "電話番号", "希望ワクチン", "体温", "LOT No.", "60～64歳の方", "自己負担免除対象者"];
 
