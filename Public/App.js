@@ -1208,6 +1208,8 @@ async function loadContext() {
   // Metadata: kinds, categories, flagged count
   api.getMeta().then((meta) => {
     state.meta = meta;
+    // Name the configured Drive folder in later attachment errors
+    api.setAttachmentFolder(meta && meta.attachmentFolder);
     renderChipRow();
   }).catch(() => { /* chips fall back to default option lists */ });
 }
