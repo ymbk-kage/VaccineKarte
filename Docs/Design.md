@@ -496,6 +496,14 @@ npm run deploy                                         # wrangler deploy（Custo
 
 `ACCESS_AUD` を `wrangler.jsonc` に入れる前に deploy した場合も，`access_not_configured` で全拒否されるだけで露出しない．
 
+### 8-3. デプロイ後の確認（必須）
+
+1. `curl -I https://vaccine.example.org/` → Access のログイン画面へ 302（本文に DB を含まない）．
+2. `curl -I https://vaccine.example.org/api/meta` → 302 または 401/403．200 は不合格．
+3. `curl -I https://vaccine-search-portal.<account>.workers.dev/` → 名前解決失敗または 404/403．200 は不合格（`workers_dev: false` の確認）．
+4. 許可リストのメールでログイン → `/api/me` が自分のメールを返す．許可リスト外のメールで PIN が届いても拒否されること．
+5. Workers Logs で検索語が記録されていないことを1件目視する．
+
 ### 8-4. PHP 版のデプロイ（要点）
 
 手順の詳細は README.md の「デプロイ: PHP（共用レンタルサーバ）版」に従う．
@@ -506,21 +514,12 @@ npm run deploy                                         # wrangler deploy（Custo
 4. `Private/Config.php` の `sheetId`（必要なら `sheetName`・`attachmentFolder`）を環境変数か直接記述で設定する（§1-3）．
 5. 確認（必須）: `http://` は HTTPS への 301，未認証の `/` と `/api/meta` は 401，**認証済みでも `Private/Config.php`・`Private/ServiceAccount.php` は 403**．
 
-### 8-3. デプロイ後の確認（必須）
-
-1. `curl -I https://vaccine.example.org/` → Access のログイン画面へ 302（本文に DB を含まない）．
-2. `curl -I https://vaccine.example.org/api/meta` → 302 または 401/403．200 は不合格．
-3. `curl -I https://vaccine-search-portal.<account>.workers.dev/` → 名前解決失敗または 404/403．200 は不合格（`workers_dev: false` の確認）．
-4. 許可リストのメールでログイン → `/api/me` が自分のメールを返す．許可リスト外のメールで PIN が届いても拒否されること．
-5. Workers Logs で検索語が記録されていないことを1件目視する．
-
 ## 9. スコープ
 
-### 9-1. v1 に含めない
+### 9-1. 含めないもの（予診票画像／PDF の表示は §10 で扱う）
 - 書き込み（備考編集・色の解除・ステータス変更）．Sheets への権限も readonly のまま．
-- ~~予診票画像／PDF の表示．~~ → v1.1 で追加（§10．セルのリンク先を Worker 経由で表示する）．
 - 統計・集計・CSV 出力．
-- 複数シート（シーズン切替）．v1 は `患者管理`（旧 `シート1`．2026-10-16 時点の実シート名） 固定．
+- 複数シート（シーズン切替）．v1 は設定した1枚（既定 `患者管理`）固定．
 - 検索履歴・お気に入り・オフライン．
 
 ### 9-2. v2 候補（優先順）
@@ -532,31 +531,31 @@ npm run deploy                                         # wrangler deploy（Custo
 
 ## 10. 添付ファイル（v1.1）
 
-追補日: 2026-10-16／状態: 実装前の確定設計／前提: §1〜§9 は変更しない（本節は追加のみ）．
+前提: 本節は §1〜§9 への追加であり，それらの方針（読み取り専用・ログ原則・fail-closed）を変えない．
 
 ### 10-1. 背景と結論
 
-- 実シートではセル自体にリンクが貼られる運用が始まった（2026-10-16 時点で1件: 行17の `氏名` セル全体に `https://drive.google.com/file/d/<id>/view?usp=sharing`．リンク先は紙の予診票を撮った JPEG 約 0.9 MB）．受付はこの写真と転記値を見比べたい．
+- シートのセル自体に Google ドライブのリンクを貼る運用を想定する（例: `氏名` セル全体に `https://drive.google.com/file/d/<id>/view?usp=sharing`．リンク先は紙の予診票を撮った JPEG（1 MB 前後）や PDF）．受付はこの写真と転記値を見比べたい．
 - **Worker が既存のサービスアカウント（以下 SA）で Drive からファイルを代理取得し，ポータルの中に表示する**．職員は Access のログインだけで足り，Drive 側で個人へ共有する必要はない．
-- ファイルは My Drive の専用フォルダ **`VaccineFormFiles`** に置き，このフォルダを SA（`<service-account>@<project>.iam.gserviceaccount.com`）へ **閲覧者** で共有する．フォルダ外・未共有のファイルは「開けない」旨を日本語で示し，原本URLへの「Google ドライブで開く」リンクに退避する（画面が壊れない）．
-- Google のスコープは `spreadsheets.readonly drive.readonly`（`Src/GoogleAuth.js` の `SHEETS_READONLY_SCOPE` を `GOOGLE_SCOPES` に改名し，空白区切りで2つ）．**書き込み権限は引き続き持たない**．SA が読めるのは共有されたものだけなので，`drive.readonly` を足しても到達範囲は `VaccineFormFiles` に限られる．
+- ファイルは My Drive の専用フォルダ（名前は任意．例: `VaccineFormFiles`）に置き，このフォルダを SA（`<service-account>@<project>.iam.gserviceaccount.com`）へ **閲覧者** で共有する．フォルダ名は設定値（Worker `ATTACHMENT_FOLDER_NAME`／PHP `attachmentFolder`）にも書き，エラー文言で職員に案内できるようにする（空なら一般的な文言）．フォルダ外・未共有のファイルは「開けない」旨を日本語で示し，原本URLへの「Google ドライブで開く」リンクに退避する（画面が壊れない）．
+- Google のスコープは `spreadsheets.readonly drive.readonly`（`Src/GoogleAuth.js` の `GOOGLE_SCOPES`．空白区切りで2つ）．**書き込み権限は引き続き持たない**．SA が読めるのは共有されたものだけなので，`drive.readonly` を足しても到達範囲は共有した専用フォルダ（とシート）に限られる．
 - クライアントがファイル ID を指定する経路は作らない．API が受けるのは **行番号＋添付の連番** だけで，ID はキャッシュ済みレコードから Worker が引く（任意の Drive ファイルを読ませるプロキシにしない）．
 - JPEG/PNG は配信時に Cloudflare Images で WebP に変換し，**小さくなったときだけ** WebP を返す（§10-4）．Drive 上のファイルは一切書き換えない．
 
 ### 10-2. リンクの抽出（`Src/SheetSource.js`・`Src/Attachments.js`・`Src/Records.js`）
 
-`buildSheetUrl` の `fields` マスクを次に替える（19列すべてに対して値・色・3種のリンク情報を同時に取る．`spreadsheets.get` 1回のまま）:
+`buildSheetUrl` の `fields` マスクは次のとおり（20列（固定19列＋備考）すべてに対して値・色・3種のリンク情報を同時に取る．`spreadsheets.get` 1回のまま）:
 
 ```
 fields=sheets(properties(title),data(rowData(values(formattedValue,effectiveFormat(backgroundColor),
   hyperlink,textFormatRuns(format(link(uri))),chipRuns(chip(richLinkProperties(uri,mimeType)))))))
 ```
 
-- `hyperlink`: セル全体リンク（UI の「リンクを挿入」や `HYPERLINK()`）．行17の実例はこれ．
+- `hyperlink`: セル全体リンク（UI の「リンクを挿入」や `HYPERLINK()`）．最も一般的な形．
 - `textFormatRuns[].format.link.uri`: 文字列の一部に貼ったリンク（`startIndex` は使わない．リンク先だけ要る）．
 - `chipRuns[].chip.richLinkProperties.uri`: スマートチップ（Drive ファイルを `@` で貼ったもの）．`mimeType` は参考情報で，判定には使わない（表示可否は配信時に Drive の実メタデータで決める）．
 
-新規の純関数モジュール `Src/Attachments.js`:
+純関数モジュール `Src/Attachments.js`:
 
 ```js
 export const DRIVE_HOSTS = ["drive.google.com", "docs.google.com"];
@@ -564,13 +563,13 @@ export const DRIVE_ID_RE = /^[A-Za-z0-9_-]{10,}$/;
 export function parseDriveFileId(url)      // -> string|null
 export function classifyLink(uri)          // -> {kind:"drive", url, fileId} | {kind:"external", url} | null
 export function extractCellLinks(cell)     // -> string[]（hyperlink → textFormatRuns → chipRuns の順，同一 URI は1つ）
-export function buildAttachments(cells)    // -> {attachments:[...], fileIds:(string|null)[]}（19列ぶんの CellData[]）
+export function buildAttachments(cells)    // -> {attachments:[...], fileIds:(string|null)[]}（20列ぶんの CellData[]）
 ```
 
 - `parseDriveFileId` が **Drive 扱いにする形は3つだけ**: `/file/d/<id>/…`，`/open?id=<id>`，`/uc?id=<id>`（ホストは `DRIVE_HOSTS`，`<id>` は `DRIVE_ID_RE` を満たす）．`/document/d/`・`/spreadsheets/d/`・`/presentation/d/` は Google ドキュメント類で `alt=media` では取れないため **external** とする（新しいタブで開けば足りる）．
 - `classifyLink`: `https:` でない URI（`http:`・`mailto:`・`tel:`・`javascript:` 等）は **捨てる**（`null`）．Drive 形でない https は external．
 - 重複除去は行単位．Drive は `fileId`，external は URL 文字列（末尾 `/` と `#` 以降を落として比較）をキーにし，**先に現れた列・先に現れた種類を残す**．連番 `index` は除去後に 0 から振る．
-- `mapRows`（`Src/Records.js`）が各行で `buildAttachments` を呼び，レコードに次を足す:
+- `mapRows`（`Src/Records.js`）が各行で `buildAttachments` を呼び，レコードに次を持たせる:
 
 ```ts
 attachments: Array<{ index: number, field: string /* 例 "name"・"note" */, label: string /* 例 "氏名のリンク" */,
@@ -578,13 +577,13 @@ attachments: Array<{ index: number, field: string /* 例 "name"・"note" */, lab
 attachmentFileIds: (string|null)[]     // attachments と同じ並び．external は null．サーバ内専用
 ```
 
-- `label` は `HEADERS[col] + "のリンク"`（19列目は「備考のリンク」）．同じセルに複数あれば `「氏名のリンク (2)」` のように連番を付ける．
-- `toSummary` に `attachmentCount: number` を足す．`toDetail` は `searchText` と同様に **`attachmentFileIds` を落とす**．`url` には ID が含まれるが，それは「Google ドライブで開く」に必要な原本URLであり，API が受けるのは行番号＋連番だけなので，ID を知っていても Worker 経由で任意ファイルを読む経路にはならない．
+- `label` は `HEADERS[col] + "のリンク"`（20列目は「備考のリンク」）．同じセルに複数あれば `「氏名のリンク (2)」` のように連番を付ける．
+- `toSummary` は `attachmentCount: number` を持つ．`toDetail` は `searchText` と同様に **`attachmentFileIds` を落とす**．`url` には ID が含まれるが，それは「Google ドライブで開く」に必要な原本URLであり，API が受けるのは行番号＋連番だけなので，ID を知っていても Worker 経由で任意ファイルを読む経路にはならない．
 - `searchText` にリンクは入れない（URL で検索されることはなく，ID 文字列をヒット対象にする理由がない）．
 
 ### 10-3. 配信エンドポイント `GET|HEAD /api/records/:rowNumber/attachments/:index`
 
-`Src/App.js` に `ATTACHMENT_PATH = /^\/api\/records\/(\d{1,7})\/attachments\/(\d{1,2})$/` を足し，`RECORD_PATH` より先に判定する．`HEAD` を許すのはこの経路だけ（画面側の事前確認用．`GET` と同じ判定・同じヘッダで本文なし．`alt=media` も WebP 変換も行わない）．
+`Src/App.js` の `ATTACHMENT_PATH = /^\/api\/records\/(\d{1,7})\/attachments\/(\d{1,2})$/` は，`RECORD_PATH` より先に判定する．`HEAD` を許すのはこの経路だけ（画面側の事前確認用．`GET` と同じ判定・同じヘッダで本文なし．`alt=media` も WebP 変換も行わない）．
 
 処理順（`Src/DriveSource.js` の `createDriveFileLoader({fetchFn, getToken, now})` が Drive 呼び出しを担当し，`App.js` から注入する）:
 
@@ -594,7 +593,7 @@ attachmentFileIds: (string|null)[]     // attachments と同じ並び．external
 4. `Number(size) > MAX_ATTACHMENT_BYTES (= 20 * 1024 * 1024)` → **413 `attachment_too_large`**（Images の入力上限 20 MB に揃える）．`size` が数値でない → 415．
 5. `GET …/files/{fileId}?alt=media&supportsAllDrives=true` を呼ぶ．**PDF と WebP は `upstream.body` をそのまま返す**（ストリーム透過）．**JPEG/PNG は `arrayBuffer()` で一度バッファし §10-4 の変換を試す**（上限 20 MB 以内なのでメモリに収まる）．`HEAD` ならここを飛ばして 200 空本文．
 
-応答ヘッダ（`Src/Http.js` に `attachmentResponse(body, {mimeType, ext, size, format})` を足し，`SECURITY_HEADERS` を基礎に次で上書き）:
+応答ヘッダ（`Src/Http.js` の `attachmentResponse(body, {mimeType, ext, size, format})` が `SECURITY_HEADERS` を基礎に次で上書き）:
 
 ```
 Content-Type: <許可リストの正規化文字列>        Content-Length: <実際に返す本文のバイト数>
@@ -606,22 +605,23 @@ Cache-Control: no-store    X-Content-Type-Options: nosniff    Referrer-Policy: n
 
 - `Content-Type` は Drive の値をそのまま流さず，許可リストのキー文字列を使う（`nosniff` と組で，HTML を画像と偽る応答を同一オリジンで実行させない）．`sandbox` は仮に本文が文書として解釈されても opaque origin に落とす保険．`frame-ancestors 'self'` でポータル内の `<iframe>`／`<img>` からだけ参照できる（**ページ本体の `frame-ancestors 'none'` は変えない**）．
 - `HEAD` の `Content-Length` は原本サイズで，`X-Attachment-Format` は付けない（変換は GET でしか行わない）．
-- Chrome は sandbox 化された文脈で PDF ビューアを起動しないことがある．初回公開時の目視確認（§10-9）で PDF が白紙なら，**PDF 応答に限り** CSP を `default-src 'none'; frame-ancestors 'self'` にする（画像応答は `sandbox` を維持）．これ以外の変更はしない．
-- **2026-10-16 実装時の修正**: Chrome 内蔵の PDF ビューアは sandbox 化された文書では白紙になるため，目視確認を待たず最初から **PDF 応答の CSP は `default-src 'none'; frame-ancestors 'self'`（`sandbox` なし）** とした．画像応答は `sandbox` を維持（`Src/Http.js` の `ATTACHMENT_IMAGE_CSP` / `ATTACHMENT_PDF_CSP`）．
+- **PDF 応答の CSP は `default-src 'none'; frame-ancestors 'self'`（`sandbox` なし）**とする．Chrome 内蔵の PDF ビューアは sandbox 化された文書では白紙になるため．画像応答は `sandbox` を維持する（`Src/Http.js` の `ATTACHMENT_IMAGE_CSP` / `ATTACHMENT_PDF_CSP`）．
 
-§2-5 の対応表に追加（`ERRORS`）:
+§2-5 の対応表のうち添付に関するもの（`ERRORS`）:
 
 | code | HTTP | 画面文言（日本語） |
 |---|---|---|
-| `attachment_unavailable` | 404 | 添付ファイルを開けません．ファイルが Google ドライブの「VaccineFormFiles」フォルダにあり，共有されているか確認してください． |
+| `attachment_unavailable` | 404 | フォルダ名を設定したとき（例 `VaccineFormFiles`）: 添付ファイルを開けません．ファイルが Google ドライブの「VaccineFormFiles」フォルダにあり，共有されているか確認してください．／未設定（空）のとき: 添付ファイルを開けません．ファイルが Google ドライブの共有フォルダにあり，サービスアカウントに共有されているか確認してください． |
 | `attachment_unsupported` | 415 | この形式のファイルは表示できません（JPEG・PNG・WebP・PDF のみ）．HEIC は JPEG に変換して保存し直してください． |
 | `attachment_too_large` | 413 | ファイルが大きすぎます（上限 20 MB）．縮小して保存し直してください． |
+
+`attachment_unavailable` の文言はフォルダ名の設定値で組み立てる．サーバ（`Src/Http.js`・`Php/Private/Lib/Http.php`）は設定値から上表のどちらかを返し，画面（`Public/Api.js`）は `HEAD` の状態コードしか得られないため，`GET /api/meta` の `attachmentFolder`（§4-3）から同じ文言を作る．フォルダ名をコードに直書きしない（利用者ごとにフォルダ名が違うため）．
 
 ログ（§1-2(7) に準拠）: `route` は **テンプレート文字列 `/api/records/:rowNumber/attachments/:index`** 固定．`status, email, ms, cacheHit` に加えて失敗時のみ `upstreamStatus`（Drive の HTTP 状態）を書く．**fileId・行番号・連番・ファイル名・サイズは書かない**．
 
 ### 10-4. WebP 変換（`Src/ImageVariant.js`・Cloudflare Images バインディング）
 
-- `wrangler.jsonc` に `"images": { "binding": "IMAGES" }` を足す．WASM エンコーダは使わない（0.9 MB 級の写真で CPU 制限に当たる）．Images は全アカウントで Free プランが既定で有効化手順は無い（月 5,000 ユニーク変換．超過分は新規変換が失敗（エラー 9422）するだけで課金されず，下記の fail-safe で原本が出る）．
+- `wrangler.jsonc` に `"images": { "binding": "IMAGES" }` を置く（PHP 版は GD で同じ判定を行う）．WASM エンコーダは使わない（0.9 MB 級の写真で CPU 制限に当たる）．Images は全アカウントで Free プランが既定で有効化手順は無い（月 5,000 ユニーク変換．超過分は新規変換が失敗（エラー 9422）するだけで課金されず，下記の fail-safe で原本が出る）．
 - 条件: 原本の `mimeType` が `image/jpeg` または `image/png`，リクエストの `Accept` に `image/webp` を含む，原本が 20 MB 以下．**WebP・PDF・HEIC（そもそも 415）は変換しない**．
 - 手順: `env.IMAGES.input(new Blob([bytes]).stream()).output({ format: "image/webp", quality: 80 }).response()` → `arrayBuffer()` でバイト列を得る（生バイトを返す API は無い）→ **原本より小さいときだけ WebP** を返し `X-Attachment-Format: webp`，そうでなければ原本を `original` で返す．常に `Vary: Accept`．変換結果は Cache API・KV に置かない（PII をアイソレート外に残さない．`no-store` のまま）．
 - fail-safe: `env.IMAGES` が無い（フィクスチャ／Images 未提供のアカウント），`output()` が例外，**8 秒** の `Promise.race` 超過 → 原本を返し `log({event:"webp_skipped", reason})` を1行．`reason` は `binding_missing | transform_error | timeout | over_input_limit` の固定値のみ（fileId・サイズ・行番号は書かない）．WebP の方が大きかった場合は正常系でありログは書かない．
@@ -641,7 +641,7 @@ export async function chooseImageVariant({ bytes, mimeType, accept, transform, l
 
 ### 10-5. ページ CSP の変更（`Src/Http.js` `SECURITY_HEADERS`）
 
-`frame-src 'self'` を1項目追加する（ドロワー内の `<iframe src="/api/records/…">` のため）．`img-src 'self' data:` は既にあり，`<img src="/api/records/…">` はこのまま通る．`object-src` は明示せず `default-src 'none'` で禁止のまま（`<object>`/`<embed>` は使わない）．`frame-ancestors 'none'`・`connect-src 'self'`・その他は不変．変更後の文字列:
+`frame-src 'self'` を含める（ドロワー内の `<iframe src="/api/records/…">` のため）．`img-src 'self' data:` は既にあり，`<img src="/api/records/…">` はこのまま通る．`object-src` は明示せず `default-src 'none'` で禁止のまま（`<object>`/`<embed>` は使わない）．`frame-ancestors 'none'`・`connect-src 'self'`・その他は §1-2(6) のとおり．全体の文字列:
 
 ```
 default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com;
@@ -650,18 +650,18 @@ connect-src 'self'; img-src 'self' data:; frame-src 'self'; base-uri 'none'; for
 
 ### 10-6. フィクスチャモード（`Src/Fixture.js`）
 
-合成30件に添付を4件足す（`ROWS` は触らず，行番号→列→リンク情報の `LINKS` 表を `toGridRow` で合成する）:
+合成30件のうち4件に添付を持たせる（`ROWS` は触らず，行番号→列→リンク情報の `LINKS` 表を `toGridRow` で合成する）:
 
 | 行 | 氏名 | セル | リンクの形 | 内容 | 期待 |
 |---|---|---|---|---|---|
-| 2 | 山田　太郎 | 氏名 | `hyperlink`（セル全体） | `https://drive.google.com/file/d/FixturePng0000000000000000000001/view?usp=sharing` | 1×1 PNG（本番行17と同じ形） |
+| 2 | 山田　太郎 | 氏名 | `hyperlink`（セル全体） | `https://drive.google.com/file/d/FixturePng0000000000000000000001/view?usp=sharing` | 1×1 PNG（実運用で最も多いセル全体リンクの形） |
 | 15 | 山本　光 | 備考 | `textFormatRuns` | `https://drive.google.com/open?id=FixturePdf0000000000000000000002` | 最小 PDF |
 | 17 | 井上　大輔 | 住所 | `hyperlink` | `https://example.com/map/fixture` | external |
 | 31 | 長谷川　ハル | 備考 | `chipRuns` | `https://drive.google.com/file/d/FixtureMissing00000000000000003/view` | 未共有＝エラー経路 |
 
 - 本文は **コードで生成**し，リポジトリにバイナリを置かない: PNG は 67 バイトの 1×1 透過 PNG を base64 定数から `Uint8Array` に戻す．PDF は `%PDF-1.4` ヘッダ＋ Catalog/Pages/Page（MediaBox 200×100・内容なし）＋正しい `xref`・`trailer`・`%%EOF` を文字列結合で組む（Chrome・Safari が1ページの白紙として開ける最小構成）．
 - `export const FIXTURE_FILES = { FixturePng…: {mimeType:"image/png", bytes}, FixturePdf…: {mimeType:"application/pdf", bytes} }` と `export async function loadFixtureFile(fileId)` → `{mimeType, size, body: ReadableStream}` または `null`．`createApp` は `loadFixtureFile` を注入で受け，**フィクスチャモードでは Drive も OAuth も Images も呼ばない**（`null` は Drive 403 相当→ `attachment_unavailable`）．
-- `FIXTURE_EXPECTATIONS` に追加: `attachments: { rowNumbers: [2, 15, 17, 31], total: 4, image: { rowNumber: 2, index: 0, field: "name", label: "氏名のリンク", mimeType: "image/png", format: "original" }, pdf: { rowNumber: 15, index: 0, field: "note", label: "備考のリンク", mimeType: "application/pdf" }, external: { rowNumber: 17, index: 0, url: "https://example.com/map/fixture" }, unavailable: { rowNumber: 31, index: 0, url: "https://drive.google.com/file/d/FixtureMissing00000000000000003/view" } }`．
+- `FIXTURE_EXPECTATIONS` の添付部分: `attachments: { rowNumbers: [2, 15, 17, 31], total: 4, image: { rowNumber: 2, index: 0, field: "name", label: "氏名のリンク", mimeType: "image/png", format: "original" }, pdf: { rowNumber: 15, index: 0, field: "note", label: "備考のリンク", mimeType: "application/pdf" }, external: { rowNumber: 17, index: 0, url: "https://example.com/map/fixture" }, unavailable: { rowNumber: 31, index: 0, url: "https://drive.google.com/file/d/FixtureMissing00000000000000003/view" } }`．
 
 ### 10-7. UI/UX（`Public/Render.js`・`Public/App.js`・`Public/Api.js`・`Public/Styles.css`・`Public/Icons.svg`）
 
@@ -686,43 +686,43 @@ connect-src 'self'; img-src 'self' data:; frame-src 'self'; base-uri 'none'; for
 - サムネイルは `button`（キーボードで開ける），`<img alt>` は出典ラベル（氏名は含めない＝読み上げでも PII を増やさない）．ライトボックス表示中は背後を `aria-hidden` にせず `aria-modal` に任せる（既存ドロワーと同じ方針）．
 - デスクトップではライトボックスがドロワーも覆う．比較は `Esc` で戻って転記値を見る往復で行う（ライトボックス→サムネイルへ焦点が戻るので往復コストが1キー）．
 
-### 10-8. テスト追加
+### 10-8. 添付のテスト
 
 単体（`node --test Tests/Unit`）:
 
 | ファイル | 検証内容 |
 |---|---|
-| `Attachments.test.js`（新規） | `parseDriveFileId` の3形式と非対象（Docs/Sheets URL・`http:`・ID が短い）／`classifyLink` の drive・external・捨てる判定／`extractCellLinks` が `hyperlink`・`textFormatRuns`・`chipRuns` の3種から取り，同一 URI を1つにする／`buildAttachments` の行内重複除去（同じ fileId が2列にあれば先の列だけ）・`index` 連番・`label` の列名と連番・`attachmentFileIds` の並び |
-| `ImageVariant.test.js`（新規） | WebP が小さい → `webp`／大きい → `original`（ログ無し）／`Accept` 無し・`image/webp` 無し → `original` で `transform` 未呼出／`transform: null` → `original`＋`webp_skipped(binding_missing)`／`transform` が throw → `original`＋`transform_error`／タイムアウト → `timeout`／PDF・WebP・HEIC の入力では `transform` が呼ばれない／20 MB 超は `over_input_limit`／ログ行に数値・ID が無い |
+| `Attachments.test.js` | `parseDriveFileId` の3形式と非対象（Docs/Sheets URL・`http:`・ID が短い）／`classifyLink` の drive・external・捨てる判定／`extractCellLinks` が `hyperlink`・`textFormatRuns`・`chipRuns` の3種から取り，同一 URI を1つにする／`buildAttachments` の行内重複除去（同じ fileId が2列にあれば先の列だけ）・`index` 連番・`label` の列名と連番・`attachmentFileIds` の並び |
+| `ImageVariant.test.js` | WebP が小さい → `webp`／大きい → `original`（ログ無し）／`Accept` 無し・`image/webp` 無し → `original` で `transform` 未呼出／`transform: null` → `original`＋`webp_skipped(binding_missing)`／`transform` が throw → `original`＋`transform_error`／タイムアウト → `timeout`／PDF・WebP・HEIC の入力では `transform` が呼ばれない／20 MB 超は `over_input_limit`／ログ行に数値・ID が無い |
 | `Records.test.js` | フィクスチャ4行の `attachments` が §10-6 の表どおり／添付の無い行は `[]`／リンクは `searchText` に入らない |
 | `Search.test.js` | `toSummary().attachmentCount`／`toDetail()` に `attachmentFileIds` が無く `attachments[].url` はある |
 | `Worker.test.js` | 行なし・連番範囲外・external の連番 → 404 `not_found`／`?id=` やパス末尾の ID を付けても無視される（fetch モックに Drive 呼び出しが **来ない**）／mimeType 不許可 → 415／`size` 超過 → 413／Drive 403・404 → 404 `attachment_unavailable`／Drive 500 → 503／200 の全ヘッダ（Content-Type 正規化・inline の中立 filename・`sandbox` CSP・`Vary: Accept`・`X-Attachment-Format`・no-store・nosniff）／`HEAD` が 200 空本文で `alt=media` と変換を呼ばない／メタデータ 60 秒キャッシュ／フィクスチャモードで `fetchFn` も `transform` も呼ばれず PNG・PDF の先頭バイトが正しい／ログ行に `fileId`・行番号・連番・`attachment.` 以外のファイル名が含まれず `route` がテンプレート文字列 |
 | `Http.test.js` | ページ CSP に `frame-src 'self'` があり `frame-ancestors 'none'` のまま／`attachmentResponse` の CSP が `frame-ancestors 'self'` と `sandbox` を含む |
-| `GoogleAuth.test.js`（新規） | 署名前の claims の `scope` が `spreadsheets.readonly drive.readonly` の2つで，書き込みスコープを含まない |
+| `GoogleAuth.test.js` | 署名前の claims の `scope` が `spreadsheets.readonly drive.readonly` の2つで，書き込みスコープを含まない |
 
-E2E（`Tests/E2E/RunE2E.py` に追加．データは §10-6）:
+E2E（`Tests/E2E/RunE2E.py`．データは §10-6．Worker 版・PHP 版とも同じ）:
 
 | # | シナリオ | 期待 |
 |---|---|---|
 | 13 | 行2（山田）を開く | `attachment-thumb` 内の `img` が可視で `naturalWidth > 0`．その応答を捕捉し `X-Attachment-Format: original`・`Vary: Accept`．クリックで `#lightbox[role=dialog]` が可視，「原寸」押下で `aria-pressed=true`，`Esc` で閉じてフォーカスが `attachment-thumb` に戻る |
 | 14 | 行15 を開く | `iframe[data-testid=attachment-pdf]` の `src` が `/api/records/15/attachments/0`．同 URL への応答を Playwright で捕捉し `status=200`・`content-type: application/pdf`・CSP に `frame-ancestors 'self'` と `sandbox`・`content-disposition` に氏名を含まない．「新しいタブで開く」の `href` が同 URL |
-| 15 | 行31 を開く | `attachment-error` が `role=alert` で可視，本文に「VaccineFormFiles」を含み，「Google ドライブで開く」の `href` が `FIXTURE_EXPECTATIONS.attachments.unavailable.url` と一致し `target=_blank`．`img`・`iframe` は描画されない |
+| 15 | 行31 を開く | `attachment-error` が `role=alert` で可視，本文に「共有フォルダ」を含み（E2E のサーバはフォルダ名を設定しないので既定の文言になる．フォルダ名を設定したときの文言は単体テストで確かめる），「Google ドライブで開く」の `href` が `FIXTURE_EXPECTATIONS.attachments.unavailable.url` と一致し `target=_blank`．`img`・`iframe` は描画されない |
 | 16 | 初期一覧（最近の受診．30件全部） | `row-attachment-icon` が **4個**（行 2・15・17・31）で各 `aria-label` が「添付あり」．行17 を開くと `attachment-external` の `href` が `https://example.com/map/fixture`，`rel` に `noopener` |
 
-- シナリオ 12（応答ヘッダ）に「ページ CSP に `frame-src 'self'` を含む」を足す．
+- シナリオ 12（応答ヘッダ）では「ページ CSP に `frame-src 'self'` を含む」も確かめる．
 - フィクスチャでは WebP のバイト削減を検証しない（`transform: null` で常に `original`）．WebP の実効果は §10-9 の本番確認で見る．
 - 失敗時の証跡保存・終了コード・実PII不使用は §7-2 と同じ．
 
 ### 10-9. 運用・デプロイ
 
-1. **初回のみ**: Google ドライブ（My Drive）に `VaccineFormFiles` フォルダを作り，共有 → `<service-account>@<project>.iam.gserviceaccount.com` を **閲覧者** で追加（通知は不要）．「リンクを知っている全員」にはしない（PII を含むため）．既存の行17のファイルをこのフォルダへ **移動** する（移動しても URL と fileId は変わらないのでセルは触らなくてよい）．
-2. **職員が新しいファイルを足す手順**（README に転記）: 写真・PDF を `VaccineFormFiles` にアップロード → 右クリック「リンクをコピー」（共有設定は変えない） → シートの該当セルを選び，Ctrl+K（リンクを挿入）で貼り付け → 60 秒以内にポータルへ反映．iPhone の写真は HEIC のままだと表示できないので，撮影設定を「互換性優先」にするか JPEG で書き出す．1ファイル 20 MB まで．
+1. **初回のみ**: Google ドライブ（My Drive）に添付用のフォルダ（例: `VaccineFormFiles`）を作り，共有 → `<service-account>@<project>.iam.gserviceaccount.com` を **閲覧者** で追加（通知は不要）．「リンクを知っている全員」にはしない（PII を含むため）．設定値（Worker は `wrangler.jsonc` の `vars.ATTACHMENT_FOLDER_NAME`，PHP 版は `VACCINE_ATTACHMENT_FOLDER` または `Config.php` の `attachmentFolder`）に同じフォルダ名を書く．すでにセルへリンクを貼ったファイルがあれば，このフォルダへ **移動** する（移動しても URL と fileId は変わらないのでセルは触らなくてよい）．
+2. **職員が新しいファイルを足す手順**（README に転記）: 写真・PDF を添付用フォルダにアップロード → 右クリック「リンクをコピー」（共有設定は変えない） → シートの該当セルを選び，Ctrl+K（リンクを挿入）で貼り付け → 60 秒以内にポータルへ反映．iPhone の写真は HEIC のままだと表示できないので，撮影設定を「互換性優先」にするか JPEG で書き出す．1ファイル 20 MB まで．
 3. Cloudflare Images: 有効化手順は不要（Free プラン既定）．使用量はダッシュボード → Images → Transformations で月のユニーク変換数を見る（同じ元画像＋同じパラメータは月1回しか数えない．受付が同じ写真を何度開いても増えない）．5,000 を超えても原本配信に退避するだけで表示は止まらない．
-4. デプロイ: `npm test` → `npm run e2e` → `npm run deploy`．`GOOGLE_SA_JSON` の再登録は不要（鍵は同じ．スコープはコード側）．
+4. デプロイ: `npm test` → `npm run e2e` → `npm run deploy`．`GOOGLE_SA_JSON` の再登録は不要（鍵は同じ．スコープはコード側）．PHP 版は §8-4 のとおりファイルを置き直す（WebP 変換は GD で行うため Cloudflare Images は関係しない）．
 5. **デプロイ後の確認（必須）**:
-   - `curl -I https://vaccine.example.org/api/records/17/attachments/0` → Access の 302（200 なら不合格）．
-   - 許可メールでログインし，行17（`氏名` にリンクのある行）を開く → 写真のサムネイルが出て，ライトボックスで原寸に切り替わる．一覧の同行にクリップアイコンがある．
-   - 同じ行17の画像応答を DevTools の Network で見る: `X-Attachment-Format: webp`，`Content-Type: image/webp`，`Vary: Accept`，`Content-Length` が `HEAD` の値（原本 約 0.9 MB）より小さい．`original` のままなら Workers Logs の `webp_skipped` の `reason` を見る．
-   - 検証用に患者情報を含まない PDF を1つ `VaccineFormFiles` に置き，自分で見つけやすい行の `備考` セルに一時的にリンク → iframe に1ページ目が描画されることを Chrome と iPhone Safari で確認（白紙なら §10-3 の PDF 限定の CSP 緩和を適用）．確認後にリンクと PDF を削除する．
+   - `curl -I https://vaccine.example.org/api/records/<行番号>/attachments/0` → Access の 302（200 なら不合格．PHP 版は 401）．
+   - 許可メールでログインし，写真のリンクを貼った行を開く → 写真のサムネイルが出て，ライトボックスで原寸に切り替わる．一覧の同行にクリップアイコンがある．
+   - 同じ行の画像応答を DevTools の Network で見る: `X-Attachment-Format: webp`，`Content-Type: image/webp`，`Vary: Accept`，`Content-Length` が `HEAD` の値（原本サイズ）より小さい．`original` のままなら Workers Logs の `webp_skipped` の `reason` を見る．
+   - 検証用に患者情報を含まない PDF を1つ添付用フォルダに置き，自分で見つけやすい行の `備考` セルに一時的にリンク → iframe に1ページ目が描画されることを Chrome と iPhone Safari で確認（PDF 応答は §10-3 のとおり `sandbox` なしの CSP で返る）．確認後にリンクと PDF を削除する．
    - Workers Logs で添付ルートの行に `fileId`・行番号が無いことを1件目視する．
 6. フォルダから出された／共有を外されたファイルは `attachment_unavailable` になるだけで検索・詳細は動き続ける．原因切り分けは「Google ドライブで開く」で本人が開けるか（フォルダ外）→ SA の閲覧者が残っているか（共有解除）の順．
