@@ -96,8 +96,9 @@ GET https://sheets.googleapis.com/v4/spreadsheets/{SHEET_ID}
 ### 2-3. 見出し検証と行マッピング（`Src/Records.js`，純関数）
 
 ```js
-export const HEADERS = ["区分","管理番号","種別","受診日","氏名","ふりがな","生年月日","性別","年齢","保護者署名",
+export const HEADERS = ["区分","管理番号","種別","受診日","氏名","ふりがな","生年月日","性別","年齢","左右","保護者署名",
   "郵便番号","住所","電話番号","希望ワクチン","体温","LOT No.","60～64歳の方","自己負担免除対象者"];
+export const NOTE_HEADER = "備考";                // 20列目（T列）．任意
 export function validateHeader(firstRow)          // -> {ok:true} | {ok:false, reason}
 export function classifyColor(bg)                 // -> "red"|"yellow"|"orange"|null
 export function mapRows(gridRows)                 // -> VaccineRecord[]
