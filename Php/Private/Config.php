@@ -7,10 +7,10 @@
 declare(strict_types=1);
 
 return [
-    // Spreadsheet that holds the vaccine pre-screening records
+    // Spreadsheet that holds the vaccine pre-screening records (VACCINE_SHEET_ID; empty = not configured)
     'sheetId' => getenv('VACCINE_SHEET_ID') ?: '',
-    // Worksheet name (renamed from シート1 on 2026-10-16)
-    'sheetName' => '患者管理',
+    // Worksheet name (VACCINE_SHEET_NAME overrides the default)
+    'sheetName' => getenv('VACCINE_SHEET_NAME') ?: '患者管理',
     // Service-account key file; the environment variable lets local real-sheet runs point elsewhere
     'serviceAccountPath' => getenv('VACCINE_SA_JSON_PATH') ?: __DIR__ . '/ServiceAccount.php',
     // Encrypted caches (sheet snapshot, access token) and request logs
