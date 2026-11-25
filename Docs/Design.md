@@ -445,6 +445,16 @@ Php/
 
 `.dev.vars` に `FIXTURE_MODE="1"` があり **かつ** hostname が localhost のとき，`SheetSource` は Google を呼ばず `Fixture.js` の30件を返す．本番 hostname では無視される（§1-2(3) と同じ柵）．合成データは架空の氏名・住所・電話（`090-0000-00xx`）で構成する．
 
+PHP 版は環境変数 `FIXTURE_MODE=1`・`DEV_BYPASS_AUTH=1`・`FIXTURE_DATA_PATH`（`ExportFixture.mjs` が書き出した JSON）を設定して `php -S 127.0.0.1:8799 Php/Tools/DevRouter.php` で起動したときだけ同じ合成データを返す（Apache 上ではこれらを読まない）．
+
+### 7-4. PHP 版のテスト
+
+| コマンド | 内容 |
+|---|---|
+| `php Php/Tests/Unit/RunUnitTests.php` | I/O 層の単体テスト（暗号化キャッシュ・認証ゲート・ルーティング・画像変換・ヘッダ．ネットワーク不要．終了コード＝失敗数） |
+| `node Php/Tests/Parity/GenerateGolden.mjs` → `php Php/Tests/Parity/RunParity.php` | JS（`Src/Normalize.js`・`Attachments.js`・`Records.js`・`Search.js`）と PHP 移植版が同じ入力にバイト単位で同じ JSON を返すかを比較（不一致があれば終了コード1） |
+| `python Tests/E2E/RunE2E.py --backend php` | §7-2 の E2E を PHP 版に対して実行 |
+
 ## 8. デプロイ手順
 
 ### 8-1. 利用者が手で行うこと（ダッシュボード）
