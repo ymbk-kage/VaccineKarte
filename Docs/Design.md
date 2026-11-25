@@ -137,6 +137,10 @@ export function mapRows(gridRows)                 // -> VaccineRecord[]
 | `sheet_unavailable` | 503 | データベースに接続できません．しばらくしてから再試行してください． |
 | `not_found` | 404 | 該当する記録がありません． |
 | `bad_request` | 400 | 検索条件の形式が正しくありません． |
+| `attachment_unavailable` | 404 | 設定したフォルダ名の有無で文言が変わる（§10-3）．例: 添付ファイルを開けません．ファイルが Google ドライブの共有フォルダにあり，サービスアカウントに共有されているか確認してください． |
+| `attachment_unsupported` / `attachment_too_large` | 415 / 413 | §10-3 |
+
+PHP 版は `Php/Private/Lib/Http.php` に同じ code・HTTP 状態・文言の表を持つ．
 
 ## 3. 検索の仕様（`Src/Normalize.js`・`Src/Search.js`，純関数）
 
