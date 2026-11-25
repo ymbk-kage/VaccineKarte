@@ -253,10 +253,11 @@ test('SheetSource: banded loader still rejects a changed header', function () us
 /**
  * App over the fixture with caches in a temp dir; $env selects dev flags.
  */
-function makeApp(array $env, array &$logs): App
+function makeApp(array $env, array &$logs, array $configOverrides = []): App
 {
     $dir = tempDir();
-    $config = ['sheetId' => 'X', 'sheetName' => 'Y', 'serviceAccountPath' => $dir . '/none.json', 'cacheDir' => $dir, 'logDir' => $dir];
+    // Overrides win over the defaults (array union keeps the left-hand keys)
+    $config = $configOverrides + ['sheetId' => 'X', 'sheetName' => 'Y', 'serviceAccountPath' => $dir . '/none.json', 'cacheDir' => $dir, 'logDir' => $dir];
     return new App($config, $env + ['FIXTURE_DATA_PATH' => __DIR__ . '/../Fixture/FixtureData.json'], function (array $e) use (&$logs): void {
         $logs[] = $e;
     });
