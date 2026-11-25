@@ -1,0 +1,6163 @@
+{
+ "grid": [
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "区分"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "管理番号"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "種別"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "受診日"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "氏名"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "ふりがな"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "生年月日"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "性別"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "年齢"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "左右"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "保護者署名"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "郵便番号"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "住所"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "電話番号"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "希望ワクチン"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "体温"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "LOT No."
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "60～64歳の方"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "自己負担免除対象者"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 0.12,
+       "green": 0.27,
+       "blue": 0.47
+      }
+     },
+     "formattedValue": "備考"
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269001"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/15"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "山田　太郎",
+     "hyperlink": "https://drive.google.com/file/d/FixturePng0000000000000000000001/view?usp=sharing"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "やまだ　たろう"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2013/04/02"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "13"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "左"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "山田　花子"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0001"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町1-1"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0001"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.5"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269002"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/01"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "青木　一郎"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "あおき　いちろう"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1980/05/12"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "46"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0002"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町2-2"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0002"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.4"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/02"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "佐藤　花子"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "さとう　はなこ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1954/03/03"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "女"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "72"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "右"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0003"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町3-3"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0003"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "CV2601A"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "①介護保険料額決定通知書"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/03"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "鈴木　次郎"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "すずき　じろう"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1960/01/20"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "男"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "66"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0004"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町4-4"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0004"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.2"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "CV2601A"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/05"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "高橋　松子"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "たかはし　まつこ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1945/02/11"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "女"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "81"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0005"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町5-5"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0005"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.8"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/08"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "田中　梅吉"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "たなか　うめきち"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1931/06/30"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "男"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "95"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0006"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町6-6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0006"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.3"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "CV2602B"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "①介護保険料額決定通知書"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/09"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "伊藤　竹男"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "いとう　たけお"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1962/08/08"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "男"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "64"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0007"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町7-7"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0007"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.7"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "CV2602B"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "心臓"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/10"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "渡辺　桜"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "わたなべ　さくら"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1956/04/04"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "女"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "70"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0008"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町8-8"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0008"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.5"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "HA2601C"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269003"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/04"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "中村　健"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "なかむら　けん"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1990/07/07"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0009"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町9-9"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0009"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.4"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269004"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/06"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "小林　陽子"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1
+      }
+     },
+     "formattedValue": "こばやし　ようこ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2018/09/09"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "8"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "小林　一郎"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0010"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町10-10"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0010"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.9"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {},
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269005"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1
+      }
+     },
+     "formattedValue": "不明"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "加藤　誠"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "かとう　まこと"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1975/11/11"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "50"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0011"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町11-11"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0011"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.1"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1
+      }
+     },
+     "formattedValue": "20269012"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/07"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "吉田　明"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "よしだ　あきら"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1988/12/01"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "37"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0012"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町12-12"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0012"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1
+      }
+     },
+     "formattedValue": "20269012"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/07"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "山本　光"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "やまもと　ひかる"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1999/02/14"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "27"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0013"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町13-13"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0013"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.2"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "管理番号の重複は確認済み（別人）．",
+     "textFormatRuns": [
+      {
+       "format": {}
+      },
+      {
+       "startIndex": 1,
+       "format": {
+        "link": {
+         "uri": "https://drive.google.com/open?id=FixturePdf0000000000000000000002"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269006"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/11"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "松本　さくら"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "まつもと　さくら"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2015/05/05"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 0.6
+      }
+     },
+     "formattedValue": "12"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "松本　健一"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0014"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町14-14"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0014"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.7"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269007"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/12"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "井上　大輔"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "いのうえ　だいすけ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1970/03/15"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "56"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0015"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町15-15",
+     "hyperlink": "https://example.com/map/fixture"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0015"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.3"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269008"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/12"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "木村　由美"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "きむら　ゆみ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1985/10/20"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "40"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0016"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町16-16"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0016"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.5"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269009"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/13"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "林　浩二"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "はやし　こうじ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1979/01/01"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "47"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0017"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町17-17"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0017"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.4"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269010"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/13"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "清水　愛"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "しみず　あい"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2020/06/06"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "清水　誠"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0018"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町18-18"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0018"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "37.0"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269011"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/14"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "山崎　翔"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "やまざき　しょう"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2010/08/18"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "16"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0019"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町19-19"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1
+      }
+     },
+     "formattedValue": "090-0000-0019"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269013"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/14"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "森　直子"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "もり　なおこ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1968/04/22"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "58"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0020"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町20-20"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0020"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.2"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/14"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "阿部　茂"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "あべ　しげる"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1940/12/12"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "男"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "85"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0021"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町21-21"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0021"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.4"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "HA2601C"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "①介護保険料額決定通知書"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/15"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "池田　清"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "いけだ　きよし"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1950/10/01"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "男"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "76"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0022"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町22-22"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0022"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.5"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "CV2603C"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269014"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/15"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "橋本　美咲"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "はしもと　みさき"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2005/03/03"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "21"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0023"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町23-23"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0023"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.8"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269015"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/15"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "石川　悠"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "いしかわ　ゆう"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1
+      }
+     },
+     "formattedValue": "2016/11/30"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 0.6
+      }
+     },
+     "formattedValue": "10"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "石川　恵"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0024"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町24-24"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0024"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269016"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/02"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "前田　剛"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "まえだ　つよし"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1983/07/19"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "43"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0025"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町25-25"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0025"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.3"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269017"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/03"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "藤田　舞"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "ふじた　まい"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1995/09/25"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "31"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0026"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町26-26"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0026"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.4"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269018"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/05"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "岡田　陸"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "おかだ　りく"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2012/01/08"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "14"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "岡田　修"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0027"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町27-27"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0027"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269019"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/08"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "後藤　葵"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "ごとう　あおい"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2019/12/24"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "6"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "後藤　学"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0028"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町28-28"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0028"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.9"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "公費"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "コロナ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/09"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "長谷川　ハル"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "はせがわ　はる"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "1938/05/05"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "女"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "88"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0029"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市ためし町29-29"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0029"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "新型コロナ（高齢者定期）"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.2"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "CV2602B"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "①介護保険料額決定通知書"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "付き添いあり．",
+     "chipRuns": [
+      {
+       "chip": {
+        "richLinkProperties": {
+         "uri": "https://drive.google.com/file/d/FixtureMissing00000000000000003/view",
+         "mimeType": "image/jpeg"
+        }
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "values": [
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "任意"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "20269020"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2026/10/10"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "村上　ユウキ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "むらかみ　ゆうき"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "2001/02/02"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "25"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "100-0030"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "架空県見本市みほん町30-30"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "090-0000-0030"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "インフルエンザ"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     },
+     "formattedValue": "36.5"
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    },
+    {
+     "effectiveFormat": {
+      "backgroundColor": {
+       "red": 1,
+       "green": 1,
+       "blue": 1
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "files": {
+  "FixturePng0000000000000000000001": {
+   "mimeType": "image/png",
+   "base64": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII="
+  },
+  "FixturePdf0000000000000000000002": {
+   "mimeType": "application/pdf",
+   "base64": "JVBERi0xLjQKMSAwIG9iago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMiAwIFIgPj4KZW5kb2JqCjIgMCBvYmoKPDwgL1R5cGUgL1BhZ2VzIC9LaWRzIFszIDAgUl0gL0NvdW50IDEgPj4KZW5kb2JqCjMgMCBvYmoKPDwgL1R5cGUgL1BhZ2UgL1BhcmVudCAyIDAgUiAvTWVkaWFCb3ggWzAgMCAyMDAgMTAwXSAvUmVzb3VyY2VzIDw8ID4+ID4+CmVuZG9iagp4cmVmCjAgNAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMDkgMDAwMDAgbiAKMDAwMDAwMDA1OCAwMDAwMCBuIAowMDAwMDAwMTE1IDAwMDAwIG4gCnRyYWlsZXIKPDwgL1NpemUgNCAvUm9vdCAxIDAgUiA+PgpzdGFydHhyZWYKMjAzCiUlRU9GCg=="
+  }
+ }
+}

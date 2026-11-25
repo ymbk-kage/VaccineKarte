@@ -1,0 +1,12 @@
+.env
+.dev.vars
+node_modules/
+.wrangler/
+logs/
+__pycache__/
+# PHP deployment: key file, generated password file, runtime caches/logs
+Php/Private/ServiceAccount.json
+Php/Private/.htpasswd
+Php/Private/Cache/
+Php/Private/Logs/
+Php/Private/ServiceAccount.php

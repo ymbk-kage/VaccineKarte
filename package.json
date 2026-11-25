@@ -1,0 +1,14 @@
+{
+  "name": "vaccine-search-portal",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --local --port 8798 --env local",
+    "deploy": "wrangler deploy",
+    "test": "node --test Tests/Unit/*.test.js",
+    "e2e": "python Tests/E2E/RunE2E.py"
+  },
+  "devDependencies": {
+    "wrangler": "^4.151.0"
+  }
+}

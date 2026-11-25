@@ -1,0 +1,8 @@
+# Code, service-account key, encrypted caches, logs and .htpasswd live here: never served over HTTP.
+# The deny sits inside <If> on purpose: Apache merges <If> sections after every directory/.htaccess section,
+# so the root .htaccess's <If ...> Require valid-user would otherwise override a plain "Require all denied"
+# here (that is exactly what happened on the first deployment, 2026-10-20). A nested <If> is merged later still.
+Require all denied
+<If "true">
+    Require all denied
+</If>

@@ -1,0 +1,49 @@
+{
+  // Worker + static UI for the vaccine pre-screening form search portal (Docs/Design.md §8-2)
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "vaccine-search-portal",
+  "main": "Src/Worker.js",
+  "compatibility_date": "2026-10-01",
+  // No unauthenticated URLs: workers.dev and preview URLs are disabled (Design §1-2(4))
+  "workers_dev": false,
+  "preview_urls": false,
+  // Custom Domain only (created automatically on the first deploy)
+  "routes": [{ "pattern": "vaccine.example.org", "custom_domain": true }],
+  // Every request (including static files) passes through the Worker's auth gate first
+  "assets": { "directory": "./Public", "binding": "ASSETS", "run_worker_first": true },
+  "vars": {
+    "SHEET_ID": "",
+    "SHEET_NAME": "患者管理",
+    // Cloudflare Access team and the AUD tag of the self-hosted application for vaccine.example.org
+    // (created 2026-10-16; not secrets). Emptying either value makes the Worker answer every request with
+    // 503 access_not_configured (fail-closed).
+    // DEV_BYPASS_ACCESS / FIXTURE_MODE must never be written here (.dev.vars only).
+    "ACCESS_TEAM_DOMAIN": "",
+    "ACCESS_AUD": ""
+  },
+  // GOOGLE_SA_JSON is a secret: `npx wrangler secret put GOOGLE_SA_JSON`
+  // Cloudflare Images binding: JPEG/PNG attachments are converted to WebP when smaller (Docs/Design.md §10-4)
+  "images": { "binding": "IMAGES" },
+  "observability": { "enabled": true },
+  "env": {
+    // Local development only: `npm run dev` = `wrangler dev --local --port 8798 --env local`.
+    // Why a separate env: with top-level `routes`, `wrangler dev` rewrites every request URL and Host header to
+    // vaccine.example.org, so the Worker could never see "localhost" (the DEV_BYPASS_ACCESS /
+    // FIXTURE_MODE guard would always refuse and the Origin check would reject the browser).
+    // Empty routes keep the real Host. Deploying this env would create an unreachable Worker (no routes, no workers.dev).
+    "local": {
+      "workers_dev": false,
+      "preview_urls": false,
+      "routes": [],
+      // Bindings are not inherited by environments either (fixture mode never calls it; real-sheet local runs may)
+      "images": { "binding": "IMAGES" },
+      // vars are not inherited by environments, so they are repeated here (no bypass flags: those live in .dev.vars)
+      "vars": {
+        "SHEET_ID": "",
+        "SHEET_NAME": "患者管理",
+        "ACCESS_TEAM_DOMAIN": "",
+        "ACCESS_AUD": ""
+      }
+    }
+  }
+}

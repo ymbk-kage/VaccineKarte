@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <!-- Document metadata; no inline script or style (CSP forbids both) -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="light dark">
+  <title>VaccineKarte ワクチンカルテ</title>
+  <!-- Declared tab icon so browsers do not request a missing /favicon.ico (404 in the console) -->
+  <link rel="icon" href="Favicon.svg" type="image/svg+xml">
+  <!-- Noto Sans JP from Google Fonts (allowed by style-src / font-src) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&amp;display=swap">
+  <!-- Application stylesheet and module entry point -->
+  <link rel="stylesheet" href="Styles.css">
+  <script type="module" src="App.js"></script>
+</head>
+<body>
+  <!-- Skip link for keyboard users -->
+  <a class="skip-link" href="#results-title">一覧へ移動</a>
+
+  <!-- App header: brand, signed-in account, theme switch -->
+  <header class="app-header">
+    <div class="brand">
+      <!-- Project logo (decorative; the heading carries the name) -->
+      <img class="brand-logo" src="Logo.svg" alt="" width="48" height="32">
+      <!-- Full name stacks the project line over the app name; phones show the app name only -->
+      <h1 class="brand-title">
+        <span class="brand-full"><span class="brand-org">VaccineKarte</span> <span class="brand-name">ワクチンカルテ</span></span>
+        <span class="brand-short">ワクチンカルテ</span>
+      </h1>
+    </div>
+    <div class="header-tools">
+      <span class="user-email" id="user-email" data-testid="user-email"></span>
+      <div class="theme-switch" id="theme-switch" role="radiogroup" aria-label="表示テーマ" data-testid="theme-switch">
+        <button type="button" class="theme-option" role="radio" aria-checked="false" data-theme-value="light" aria-label="ライト" title="ライト">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="Icons.svg#sun"></use></svg>
+        </button>
+        <button type="button" class="theme-option" role="radio" aria-checked="true" data-theme-value="system" aria-label="システム設定に従う" title="システム設定に従う">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="Icons.svg#monitor"></use></svg>
+        </button>
+        <button type="button" class="theme-option" role="radio" aria-checked="false" data-theme-value="dark" aria-label="ダーク" title="ダーク">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="Icons.svg#moon"></use></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main" id="main">
+    <!-- Search bar and filter chips -->
+    <section class="search-panel" aria-label="検索と絞り込み">
+      <div class="search-bar" role="search">
+        <label for="search-input" class="visually-hidden">記録を検索</label>
+        <svg class="icon search-icon" aria-hidden="true" focusable="false"><use href="Icons.svg#search"></use></svg>
+        <input id="search-input" class="search-input" type="search" data-testid="search-input"
+          placeholder="氏名・ふりがな・電話番号・管理番号・住所・LOT No. などで検索"
+          autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="search"
+          aria-controls="result-list" aria-describedby="search-hint">
+        <span id="search-hint" class="visually-hidden">入力すると自動で検索します．空白・ハイフンの有無，ひらがなとカタカナは区別しません．</span>
+        <button type="button" class="search-clear icon-button" id="search-clear" data-testid="search-clear" aria-label="検索語を消去" hidden>
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="Icons.svg#close"></use></svg>
+        </button>
+        <kbd class="keycap" aria-hidden="true" title="/ キーで検索">/</kbd>
+        <button type="button" class="filter-sheet-button icon-button" id="filter-sheet-button" data-testid="filter-sheet-button"
+          aria-label="日付・年齢で絞り込む" aria-haspopup="dialog" aria-expanded="false">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="Icons.svg#sliders"></use></svg>
+          <span class="badge" id="filter-sheet-badge" hidden></span>
+        </button>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="絞り込み"></div>
+    </section>
+
+    <!-- Result list -->
+    <section class="results" id="results" aria-labelledby="results-title" aria-busy="false">
+      <div class="results-header">
+        <div class="results-heading">
+          <h2 class="results-title" id="results-title" tabindex="-1">最近の受診</h2>
+          <span class="result-count" id="result-count" data-testid="result-count" aria-live="polite"></span>
+          <span class="result-range" id="result-range"></span>
+        </div>
+        <div class="sort">
+          <label for="sort-select" class="visually-hidden">並び替え</label>
+          <select id="sort-select" class="sort-select" data-testid="sort-select">
+            <option value="visitDesc">受診日の新しい順</option>
+            <option value="visitAsc">受診日の古い順</option>
+            <option value="furigana">ふりがな順</option>
+            <option value="rowDesc">登録順</option>
+          </select>
+          <svg class="icon sort-chevron" aria-hidden="true" focusable="false"><use href="Icons.svg#chevron-down"></use></svg>
+        </div>
+      </div>
+      <p class="stale-notice" id="stale-notice" data-testid="stale-notice" hidden></p>
+      <div class="error-banner" id="error-banner" role="alert" data-testid="error-banner" hidden></div>
+      <div class="list-panel" id="list-panel">
+        <ul class="result-list" id="result-list" aria-labelledby="results-title" data-testid="result-list"></ul>
+        <div class="skeleton" id="skeleton" aria-hidden="true" hidden></div>
+        <div class="empty-state" id="empty-state" hidden></div>
+      </div>
+      <nav class="pagination" id="pagination" aria-label="ページ送り" data-testid="pagination" hidden></nav>
+    </section>
+  </main>
+
+  <!-- Scrim behind the drawer on narrow screens -->
+  <div class="scrim" id="scrim" hidden></div>
+
+  <!-- Detail drawer (desktop: right panel / mobile: full-height bottom sheet) -->
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" data-testid="drawer" hidden></aside>
+
+  <!-- Filter sheet for date/age conditions on mobile -->
+  <div class="sheet" id="filter-sheet" role="dialog" aria-modal="true" aria-labelledby="filter-sheet-title" data-testid="filter-sheet" hidden></div>
+
+  <!-- Anchored popover used by the filter chips -->
+  <div class="popover" id="popover" role="dialog" hidden></div>
+
+  <!-- Full-screen image viewer for attachments (layers above the drawer, below the toast) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="添付画像" data-testid="lightbox" hidden></div>
+
+  <!-- Transient status message (e.g. after copying the address) -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

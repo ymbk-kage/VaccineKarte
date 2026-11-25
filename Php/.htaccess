@@ -1,0 +1,53 @@
+# Vaccine DB search portal on shared PHP hosting (vaccine.example.org -> /vaccine/).
+# Order of protection: plain HTTP is redirected before any password is asked for, then Basic authentication
+# guards every path (static files included), then Api.php re-checks that a user was authenticated.
+
+# No directory listings; index.html is the entry page
+Options -Indexes
+DirectoryIndex index.html
+
+# Basic authentication over HTTPS only. Plain HTTP is let through *here* so that the browser is redirected
+# before it ever sends the password unencrypted (mod_rewrite runs after the authorisation phase).
+# Caution: <If> is merged after all directory sections, so a subfolder that must stay closed has to put its
+# own deny inside <If> as well (see Private/.htaccess).
+AuthType Basic
+AuthName "Vaccine DB"
+AuthUserFile /path/to/site/Private/.htpasswd
+<If "%{HTTPS} == 'on'">
+    Require valid-user
+</If>
+<Else>
+    Require all granted
+</Else>
+
+# Dotfiles (.htaccess, .htpasswd, editor leftovers) are never served
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+RewriteEngine On
+# Force HTTPS for every request
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# Second lock on Private/ (the first is Private/.htaccess): 403 for everyone, authenticated or not
+RewriteRule ^Private(/|$) - [F,L]
+# Every /api/ path goes to the front controller (the Worker's routing lives in Private/Lib/App.php)
+RewriteRule ^api/ Api.php [L]
+
+# Nothing from this site may be kept by the shared host's front-end cache or the browser (a .json without this header
+# was cached and kept being served after deletion, 2026-10-20). Api.php sends the same value itself.
+Header always set Cache-Control "no-store"
+
+# Static files get the same security headers as the Worker sent (Api.php sets its own)
+FileETag None
+<FilesMatch "\.(html|js|css|svg|png)$">
+    Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; connect-src 'self'; img-src 'self' data:; frame-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
+    Header always set Cache-Control "no-store"
+    Header always set X-Robots-Tag "noindex, nofollow, noarchive"
+    Header always set Referrer-Policy "no-referrer"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header unset ETag
+    Header unset Last-Modified
+</FilesMatch>

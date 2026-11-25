@@ -1,0 +1,7 @@
+# Local development only (copy to .dev.vars). Never register these as production secrets.
+# Bypass Access for localhost requests only (pseudo user dev@localhost)
+DEV_BYPASS_ACCESS="1"
+# Serve the 30 synthetic records from Src/Fixture.js instead of Google Sheets (localhost only)
+FIXTURE_MODE="1"
+# Optional: real service-account JSON on one line, used when FIXTURE_MODE is not "1"
+GOOGLE_SA_JSON='{"type":"service_account","client_email":"<email>","private_key":"<PEM>"}'
