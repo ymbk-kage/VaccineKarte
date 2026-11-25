@@ -365,7 +365,7 @@ I/O を持つのは `App.js / Access.js(fetch部) / GoogleAuth.js / SheetSource.
 
 ### 6-2. 共用 PHP サーバ版（`Php/`）
 
-Workers を使えない環境のため，同じ API（§4）を PHP 8.3 以上に移植した版．画面は `Public/` をそのまま使う．認証は Cloudflare Access の代わりに Apache の Basic 認証（HTTPS 必須）で，PHP 側でも認証済みであることを再確認する（Worker の JWT 再検証に相当．未認証なら 503 で全拒否）．必要な拡張は `intl`・`mbstring`・`openssl`・`curl`・`gd`（WebP 対応）．
+Workers を使えない環境のため，同じ API（§4）を PHP に移植した版（CI とローカルで PHP 8.4 を使って確かめている）．画面は `Public/` をそのまま使う．認証は Cloudflare Access の代わりに Apache の Basic 認証（HTTPS 必須）で，PHP 側でも認証済みであることを再確認する（Worker の JWT 再検証に相当．未認証なら 503 で全拒否）．必要な拡張は `intl`・`mbstring`・`openssl`・`curl`・`gd`（WebP 対応）．
 
 ```
 Php/
