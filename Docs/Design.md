@@ -473,22 +473,38 @@ PHP 版は環境変数 `FIXTURE_MODE=1`・`DEV_BYPASS_AUTH=1`・`FIXTURE_DATA_PA
   "workers_dev": false, "preview_urls": false,
   "routes": [{ "pattern": "vaccine.example.org", "custom_domain": true }],
   "assets": { "directory": "./Public", "binding": "ASSETS", "run_worker_first": true },
-  "vars": { "SHEET_ID": "", "SHEET_NAME": "シート1",
-            "ACCESS_TEAM_DOMAIN": "<team>.cloudflareaccess.com", "ACCESS_AUD": "<AUDタグ>" },
-  "observability": { "enabled": true } }
+  "vars": { "SHEET_ID": "", "SHEET_NAME": "患者管理", "ATTACHMENT_FOLDER_NAME": "",
+            "ACCESS_TEAM_DOMAIN": "", "ACCESS_AUD": "" },        // 空のままなら全拒否（fail-closed）
+  "images": { "binding": "IMAGES" },                            // §10-4
+  "observability": { "enabled": true },
+  "env": { "local": { "routes": [], "workers_dev": false, "preview_urls": false,
+                      "images": { "binding": "IMAGES" }, "vars": { /* 上と同じ4＋1項目 */ } } } }
 ```
 
+- `env.local` はローカル開発専用（`npm run dev` が `--env local` を付ける）．最上位に `routes` があると `wrangler dev` が全リクエストの URL と Host を `vaccine.example.org` に書き換え，Worker が localhost を判定できなくなる（迂回とフィクスチャの柵が常に拒否し，Origin 検査もブラウザを弾く）ため，`routes` を空にした環境を分ける．`vars` とバインディングは環境に継承されないので同じ値を繰り返す．
+- `SHEET_ID`・`ACCESS_TEAM_DOMAIN`・`ACCESS_AUD` は利用者が自分の値に書き換える．`ATTACHMENT_FOLDER_NAME` は添付を使うなら §10-9 で作ったフォルダと同じ名前にする．
+
 ```powershell
-cd VaccineOcrDatabase\SearchPortal
-npm install                                            # wrangler のみ
-npm test                                               # node --test Tests/Unit
-npm run dev                                            # wrangler dev --local --port 8798（.dev.vars で迂回＋フィクスチャ）
+cd VaccineKarte
+npm ci                                                 # wrangler のみ
+npm test                                               # node --test Tests/Unit/*.test.js
+npm run dev                                            # wrangler dev --local --port 8798 --env local（.dev.vars で迂回＋フィクスチャ）
 python Tests\E2E\RunE2E.py                             # E2E
-Get-Content ServiceAccount.json -Raw | npx wrangler secret put GOOGLE_SA_JSON
+Get-Content <鍵ファイル>.json -Raw | npx wrangler secret put GOOGLE_SA_JSON
 npm run deploy                                         # wrangler deploy（Custom Domain は初回 deploy で自動作成）
 ```
 
-`ACCESS_AUD` を toml に入れる前に deploy した場合も，`access_not_configured` で全拒否されるだけで露出しない．
+`ACCESS_AUD` を `wrangler.jsonc` に入れる前に deploy した場合も，`access_not_configured` で全拒否されるだけで露出しない．
+
+### 8-4. PHP 版のデプロイ（要点）
+
+手順の詳細は README.md の「デプロイ: PHP（共用レンタルサーバ）版」に従う．
+
+1. サイトのディレクトリ直下に `Php/.htaccess`・`Php/Api.php`・`Php/Private/` と `Public/` の中身を同じ階層に置く．`Php/Tools/`・`Php/Tests/` は置かない．
+2. `.htaccess` の `AuthUserFile` を `Private/.htpasswd` の絶対パスに書き換え，`.htpasswd` を bcrypt で作る．
+3. 鍵は `php Php/Tools/MakeServiceAccountPhp.php <key.json> > Php/Private/ServiceAccount.php` で `.php` にしてから置く（`.json` のまま置かない）．
+4. `Private/Config.php` の `sheetId`（必要なら `sheetName`・`attachmentFolder`）を環境変数か直接記述で設定する（§1-3）．
+5. 確認（必須）: `http://` は HTTPS への 301，未認証の `/` と `/api/meta` は 401，**認証済みでも `Private/Config.php`・`Private/ServiceAccount.php` は 403**．
 
 ### 8-3. デプロイ後の確認（必須）
 
