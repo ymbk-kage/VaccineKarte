@@ -98,7 +98,7 @@ jobs:
           coverage: none
       # Python 3.12 drives Playwright
       - name: Set up Python 3.12
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       # Install wrangler (and the linux workerd binary) from package-lock.json
@@ -125,20 +125,9 @@ jobs:
           node Php/Tools/ExportFixture.mjs
           # The committed export must match the current Src/Fixture.js
           git diff --exit-code Php/Tests/Fixture/FixtureData.json
-      # RunE2E.py (line 101) forces extension_dir=<dir of PHP_BINARY>/ext, the Windows layout.
-      # On Linux that is /usr/bin/ext, which would stop every shared extension from loading:
-      # point that path at the real extension directory so the forced setting still works
-      - name: Map <php dir>/ext to the real extension directory
-        run: |
-          # Directory of the php binary RunE2E.py derives the ext path from
-          php_dir="$(dirname "$(php -r 'echo PHP_BINARY;')")"
-          # Extension directory configured by setup-php
-          ext_dir="$(php -r 'echo ini_get("extension_dir");')"
-          # Create the link only when nothing exists there yet
-          if [ ! -e "$php_dir/ext" ]; then sudo ln -s "$ext_dir" "$php_dir/ext"; fi
-          # Show the result and confirm the extensions load with the forced flags
-          ls -ld "$php_dir/ext"
-          php -d "extension_dir=$php_dir/ext" -r 'foreach (["intl","mbstring","openssl","curl","gd"] as $e) { if (!extension_loaded($e)) { fwrite(STDERR, "missing $e\n"); exit(1); } } echo "extensions OK\n";'
+      # RunE2E.py only adds -d extension flags when an extension is missing; with setup-php all are loaded
+      - name: Check PHP extensions
+        run: php -r 'foreach (["intl","mbstring","openssl","curl","gd"] as $e) { if (!extension_loaded($e)) { fwrite(STDERR, "missing $e\n"); exit(1); } } echo "extensions OK\n";'
       # 17 scenarios against wrangler dev in fixture mode (real Chrome via the default --channel chrome)
       - name: E2E (Worker backend)
         run: python Tests/E2E/RunE2E.py
@@ -161,6 +150,10 @@ jobs:
     name: Secret scan (gitleaks)
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # gitleaks-action lists the commits of a pull request through the API, which needs pull-requests: read
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
       # Full history so every commit is scanned, not only the tip
       - name: Checkout
@@ -172,3 +165,5 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The read-only token cannot post PR comments, so do not try
+          GITLEAKS_ENABLE_COMMENTS: "false"
