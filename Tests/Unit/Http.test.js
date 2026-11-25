@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { SECURITY_HEADERS, ERRORS, json, errorResponse, htmlErrorResponse, withSecurityHeaders, isLocalHost, attachmentResponse,
-  ATTACHMENT_IMAGE_CSP, ATTACHMENT_PDF_CSP } from "../../Src/Http.js";
+  ATTACHMENT_IMAGE_CSP, ATTACHMENT_PDF_CSP, attachmentUnavailableMessage } from "../../Src/Http.js";
 
 // Assert that every security header is present with the exact value
 function assertSecurityHeaders(response) {
@@ -55,7 +55,9 @@ test("design error table statuses", () => {
   assert.equal(ERRORS.attachment_unavailable.status, 404);
   assert.equal(ERRORS.attachment_unsupported.status, 415);
   assert.equal(ERRORS.attachment_too_large.status, 413);
-  assert.ok(ERRORS.attachment_unavailable.message.includes("VaccineFormFiles"));
+  // The default wording names no specific folder (the name is configurable)
+  assert.ok(ERRORS.attachment_unavailable.message.includes("共有フォルダ"));
+  assert.ok(!ERRORS.attachment_unavailable.message.includes("VaccineFormFiles"));
   assert.ok(ERRORS.attachment_unsupported.message.includes("HEIC"));
   assert.ok(ERRORS.attachment_too_large.message.includes("20 MB"));
 });
@@ -127,4 +129,26 @@ test("attachmentResponse for a PDF drops sandbox (Chrome PDF viewer) and HEAD om
   assert.equal(response.headers.get("Content-Length"), "1234");
   assert.equal(response.headers.get("X-Attachment-Format"), null);
   assert.equal(response.headers.get("Vary"), "Accept");
+});
+
+test("attachmentUnavailableMessage names the configured folder, else keeps the default", () => {
+  // Configured name appears in the message
+  assert.ok(attachmentUnavailableMessage("FormFiles").includes("「FormFiles」フォルダ"));
+  // Surrounding spaces are ignored
+  assert.ok(attachmentUnavailableMessage("  FormFiles  ").includes("「FormFiles」フォルダ"));
+  // Empty, blank or missing values fall back to the default wording
+  for (const value of ["", "   ", undefined, null]) {
+    assert.equal(attachmentUnavailableMessage(value), ERRORS.attachment_unavailable.message);
+  }
+});
+
+test("errorResponse uses a message override for known codes only", async () => {
+  // Known code: the override replaces the table message, status is unchanged
+  const known = errorResponse("attachment_unavailable", {}, "custom");
+  assert.equal(known.status, 404);
+  assert.deepEqual(await known.json(), { error: { code: "attachment_unavailable", message: "custom" } });
+  // Unknown code: the override is ignored and the generic 500 text is used
+  const unknown = errorResponse("no_such_code", {}, "custom");
+  assert.equal(unknown.status, 500);
+  assert.equal((await unknown.json()).error.message, ERRORS.internal_error.message);
 });

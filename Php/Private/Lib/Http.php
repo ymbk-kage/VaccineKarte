@@ -27,7 +27,8 @@ const ERRORS = [
     'not_found' => [404, '該当する記録がありません．'],
     'bad_request' => [400, '検索条件の形式が正しくありません．'],
     'method_not_allowed' => [405, 'この操作は許可されていません．'],
-    'attachment_unavailable' => [404, '添付ファイルを開けません．ファイルが Google ドライブの「VaccineFormFiles」フォルダにあり，共有されているか確認してください．'],
+    // Default wording without a folder name; attachmentUnavailableMessage() adds the configured one
+    'attachment_unavailable' => [404, '添付ファイルを開けません．ファイルが Google ドライブの共有フォルダにあり，サービスアカウントに共有されているか確認してください．'],
     'attachment_unsupported' => [415, 'この形式のファイルは表示できません（JPEG・PNG・WebP・PDF のみ）．HEIC は JPEG に変換して保存し直してください．'],
     'attachment_too_large' => [413, 'ファイルが大きすぎます（上限 20 MB）．縮小して保存し直してください．'],
     'internal_error' => [500, '予期しないエラーが発生しました．しばらくしてから再試行してください．'],
@@ -113,12 +114,30 @@ function json(mixed $data, int $status = 200, array $extraHeaders = []): Respons
  * Build a JSON error response for a known code (unknown codes become internal_error).
  * @param array<string,string> $extraHeaders
  */
-function errorResponse(string $code, array $extraHeaders = []): Response
+function errorResponse(string $code, array $extraHeaders = [], ?string $message = null): Response
 {
     // Fall back to a generic 500 for unknown codes
     $safeCode = array_key_exists($code, ERRORS) ? $code : 'internal_error';
-    [$status, $message] = ERRORS[$safeCode];
-    return json(['error' => ['code' => $safeCode, 'message' => $message]], $status, $extraHeaders);
+    [$status, $tableMessage] = ERRORS[$safeCode];
+    // An override applies only to known codes, so an unknown code never carries a custom text
+    $text = $safeCode === $code && $message !== null ? $message : $tableMessage;
+    return json(['error' => ['code' => $safeCode, 'message' => $text]], $status, $extraHeaders);
+}
+
+/**
+ * Message for attachment_unavailable, naming the Drive folder when one is configured (Design §10-3).
+ * Counterpart of attachmentUnavailableMessage() in Src/Http.js.
+ */
+function attachmentUnavailableMessage(?string $folderName): string
+{
+    // Trim so a value of only spaces counts as not configured
+    $name = trim((string) $folderName);
+    // No folder configured: keep the generic default wording
+    if ($name === '') {
+        return ERRORS['attachment_unavailable'][1];
+    }
+    // Folder configured: tell staff exactly which folder to check
+    return '添付ファイルを開けません．ファイルが Google ドライブの「' . $name . '」フォルダにあり，共有されているか確認してください．';
 }
 
 /**

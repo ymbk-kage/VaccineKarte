@@ -14,8 +14,11 @@
   "vars": {
     "SHEET_ID": "",
     "SHEET_NAME": "患者管理",
+    // Google Drive folder that holds attachment files, named in the attachment error message
+    // (empty = the message says "the shared folder" without a name)
+    "ATTACHMENT_FOLDER_NAME": "",
     // Cloudflare Access team and the AUD tag of the self-hosted application for vaccine.example.org
-    // (created 2026-10-16; not secrets). Emptying either value makes the Worker answer every request with
+    // (not secrets). Leaving either value empty makes the Worker answer every request with
     // 503 access_not_configured (fail-closed).
     // DEV_BYPASS_ACCESS / FIXTURE_MODE must never be written here (.dev.vars only).
     "ACCESS_TEAM_DOMAIN": "",
@@ -41,6 +44,7 @@
       "vars": {
         "SHEET_ID": "",
         "SHEET_NAME": "患者管理",
+        "ATTACHMENT_FOLDER_NAME": "",
         "ACCESS_TEAM_DOMAIN": "",
         "ACCESS_AUD": ""
       }

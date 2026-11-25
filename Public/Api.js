@@ -11,7 +11,8 @@ const ERROR_MESSAGES = {
   not_found: '該当する記録がありません．',
   bad_request: '検索条件の形式が正しくありません．',
   // Attachment delivery errors (Design.md §10-3)
-  attachment_unavailable: '添付ファイルを開けません．ファイルが Google ドライブの「VaccineFormFiles」フォルダにあり，共有されているか確認してください．',
+  // Default wording without a folder name; errorMessage() names the folder once /api/meta reports one
+  attachment_unavailable: '添付ファイルを開けません．ファイルが Google ドライブの共有フォルダにあり，サービスアカウントに共有されているか確認してください．',
   attachment_unsupported: 'この形式のファイルは表示できません（JPEG・PNG・WebP・PDF のみ）．HEIC は JPEG に変換して保存し直してください．',
   attachment_too_large: 'ファイルが大きすぎます（上限 20 MB）．縮小して保存し直してください．',
   // Client-side only: Access answered with a redirect to its login page (session expired or cookie missing)
@@ -30,8 +31,20 @@ function codeFromStatus(status) {
   return 'sheet_unavailable';
 }
 
+// Drive folder name for attachment errors, taken from /api/meta ('' = not configured)
+let attachmentFolderName = '';
+
+// Remember the configured Drive folder name (anything but a non-blank string clears it)
+export function setAttachmentFolder(name) {
+  attachmentFolderName = typeof name === 'string' ? name.trim() : '';
+}
+
 // Return the Japanese message for an error code (unknown codes fall back by family)
 export function errorMessage(code) {
+  // Name the configured folder so staff know exactly where to check (same text as the server)
+  if (code === 'attachment_unavailable' && attachmentFolderName) {
+    return `添付ファイルを開けません．ファイルが Google ドライブの「${attachmentFolderName}」フォルダにあり，共有されているか確認してください．`;
+  }
   return ERROR_MESSAGES[code] || ERROR_MESSAGES.sheet_unavailable;
 }
 

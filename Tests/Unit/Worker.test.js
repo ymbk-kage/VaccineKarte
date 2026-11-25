@@ -137,6 +137,22 @@ test("GET /api/meta returns totals and ranges", async () => {
   assert.deepEqual(meta.kinds, ["インフルエンザ", "コロナ"]);
   assert.deepEqual(meta.categories, ["任意", "公費"]);
   assert.deepEqual(meta.visitDateRange, EX.visitDateRange);
+  // No ATTACHMENT_FOLDER_NAME configured -> empty string
+  assert.equal(meta.attachmentFolder, "");
+});
+
+test("ATTACHMENT_FOLDER_NAME reaches /api/meta and the attachment_unavailable message", async () => {
+  const { app } = makeApp();
+  const env = { ...DEV_ENV, ATTACHMENT_FOLDER_NAME: " FormFiles " };
+  // /api/meta reports the trimmed folder name for the UI
+  const meta = await (await app.fetch(new Request(`${LOCAL}/api/meta`), env)).json();
+  assert.equal(meta.attachmentFolder, "FormFiles");
+  // The unshared fixture file names the folder in the error body
+  const missing = await app.fetch(attachmentRequest(EX.attachments.unavailable.rowNumber, 0), env);
+  assert.equal(missing.status, 404);
+  const body = await missing.json();
+  assert.equal(body.error.code, "attachment_unavailable");
+  assert.ok(body.error.message.includes("「FormFiles」フォルダ"));
 });
 
 test("POST /api/search returns summaries", async () => {

@@ -8,7 +8,7 @@ import { loadFixtureGrid, loadFixtureFile as defaultLoadFixtureFile } from "./Fi
 import { parseQuery, searchRecords, toSummary, toDetail, computeMeta } from "./Search.js";
 import { ATTACHMENT_TYPES, MAX_ATTACHMENT_BYTES } from "./Attachments.js";
 import { chooseImageVariant, createImagesTransform, WEBP_SOURCE_TYPES } from "./ImageVariant.js";
-import { json, errorResponse, htmlErrorResponse, isLocalHost, withSecurityHeaders, attachmentResponse } from "./Http.js";
+import { json, errorResponse, htmlErrorResponse, isLocalHost, withSecurityHeaders, attachmentResponse, attachmentUnavailableMessage } from "./Http.js";
 
 // Pseudo user for local development
 export const DEV_EMAIL = "dev@localhost";
@@ -157,7 +157,9 @@ export function createApp({
       info.route = "/api/meta";
       const data = await loadData(env, local, info, ctx);
       if (data.error) return data.error;
-      return json({ ...computeMeta(data.records), fetchedAt: new Date(data.fetchedAt).toISOString(), stale: data.stale });
+      // attachmentFolder lets the UI name the Drive folder in its attachment error (empty = not configured)
+      const attachmentFolder = String(env.ATTACHMENT_FOLDER_NAME ?? "").trim();
+      return json({ ...computeMeta(data.records), fetchedAt: new Date(data.fetchedAt).toISOString(), stale: data.stale, attachmentFolder });
     }
     const recordMatch = pathname.match(RECORD_PATH);
     if (recordMatch) {
@@ -230,7 +232,11 @@ export function createApp({
     // Map upstream failures: unshared/missing -> attachment_unavailable, anything else -> outage
     const upstreamFailure = (error) => {
       info.upstreamStatus = error?.httpStatus ?? null;
-      return errorResponse(error?.code === "attachment_unavailable" ? "attachment_unavailable" : "sheet_unavailable");
+      // The unavailable message names the configured Drive folder (ATTACHMENT_FOLDER_NAME), if any
+      if (error?.code === "attachment_unavailable") {
+        return errorResponse("attachment_unavailable", {}, attachmentUnavailableMessage(env.ATTACHMENT_FOLDER_NAME));
+      }
+      return errorResponse("sheet_unavailable");
     };
     // 2. Metadata only (mimeType, size)
     let meta;

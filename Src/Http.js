@@ -33,7 +33,8 @@ export const ERRORS = {
   not_found: { status: 404, message: "該当する記録がありません．" },
   bad_request: { status: 400, message: "検索条件の形式が正しくありません．" },
   method_not_allowed: { status: 405, message: "この操作は許可されていません．" },
-  attachment_unavailable: { status: 404, message: "添付ファイルを開けません．ファイルが Google ドライブの「VaccineFormFiles」フォルダにあり，共有されているか確認してください．" },
+  // Default wording without a folder name; attachmentUnavailableMessage() adds the configured one
+  attachment_unavailable: { status: 404, message: "添付ファイルを開けません．ファイルが Google ドライブの共有フォルダにあり，サービスアカウントに共有されているか確認してください．" },
   attachment_unsupported: { status: 415, message: "この形式のファイルは表示できません（JPEG・PNG・WebP・PDF のみ）．HEIC は JPEG に変換して保存し直してください．" },
   attachment_too_large: { status: 413, message: "ファイルが大きすぎます（上限 20 MB）．縮小して保存し直してください．" },
   internal_error: { status: 500, message: "予期しないエラーが発生しました．しばらくしてから再試行してください．" },
@@ -68,16 +69,33 @@ export function json(data, status = 200, extraHeaders = {}) {
 }
 
 /**
+ * Message for attachment_unavailable, naming the Drive folder when one is configured (Design §10-3).
+ * @param {string|undefined|null} folderName  ATTACHMENT_FOLDER_NAME; empty means "not configured"
+ * @returns {string}
+ */
+export function attachmentUnavailableMessage(folderName) {
+  // Trim so a value of only spaces counts as not configured
+  const name = String(folderName ?? "").trim();
+  // No folder configured: keep the generic default wording
+  if (!name) return ERRORS.attachment_unavailable.message;
+  // Folder configured: tell staff exactly which folder to check
+  return `添付ファイルを開けません．ファイルが Google ドライブの「${name}」フォルダにあり，共有されているか確認してください．`;
+}
+
+/**
  * Build a JSON error response for a known code.
  * @param {string} code
  * @param {Record<string,string>} [extraHeaders]
+ * @param {string} [message]  Replaces the table message (used for the configured attachment folder name)
  * @returns {Response}
  */
-export function errorResponse(code, extraHeaders = {}) {
+export function errorResponse(code, extraHeaders = {}, message = undefined) {
   // Unknown codes fall back to a generic 500
   const entry = ERRORS[code] || ERRORS.internal_error;
   const safeCode = ERRORS[code] ? code : "internal_error";
-  return json({ error: { code: safeCode, message: entry.message } }, entry.status, extraHeaders);
+  // An override applies only to known codes, so an unknown code never carries a custom text
+  const text = ERRORS[code] && typeof message === "string" ? message : entry.message;
+  return json({ error: { code: safeCode, message: text } }, entry.status, extraHeaders);
 }
 
 /**
@@ -107,7 +125,7 @@ export function htmlErrorResponse(code, extraHeaders = {}) {
 // the bytes were ever interpreted as a document
 export const ATTACHMENT_IMAGE_CSP = "default-src 'none'; frame-ancestors 'self'; sandbox";
 // CSP for attachment PDFs: no sandbox, because Chrome's built-in PDF viewer renders a blank page inside
-// a sandboxed document (2026-10-16 implementation fix to Design §10-3)
+// a sandboxed document (Design §10-3)
 export const ATTACHMENT_PDF_CSP = "default-src 'none'; frame-ancestors 'self'";
 
 /**

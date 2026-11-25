@@ -183,6 +183,15 @@ final class App
     }
 
     /**
+     * Configured Drive folder name for attachment errors ('' when not configured).
+     */
+    private function attachmentFolder(): string
+    {
+        // Older Config.php copies may lack the key, so treat a missing value as not configured
+        return trim((string) ($this->config['attachmentFolder'] ?? ''));
+    }
+
+    /**
      * True when the synthetic fixture replaces Google (localhost AND FIXTURE_MODE=1).
      */
     private function isFixture(bool $local): bool
@@ -237,7 +246,8 @@ final class App
             }
             $meta = computeMeta($data['records']);
             $meta = is_object($meta) ? (array) $meta : $meta;
-            return json($meta + ['fetchedAt' => isoTime($data['fetchedAt']), 'stale' => $data['stale']]);
+            // attachmentFolder lets the UI name the Drive folder in its attachment error (empty = not configured)
+            return json($meta + ['fetchedAt' => isoTime($data['fetchedAt']), 'stale' => $data['stale'], 'attachmentFolder' => $this->attachmentFolder()]);
         }
         if (preg_match(RECORD_PATH, $path, $match)) {
             // Log the route template, never the row number
@@ -329,10 +339,15 @@ final class App
         }
         $fixture = $this->isFixture($local);
         // Map upstream failures: unshared/missing -> attachment_unavailable, anything else -> outage
-        $upstreamFailure = static function (\Throwable $error) use (&$info): Response {
+        $folderName = $this->attachmentFolder();
+        $upstreamFailure = static function (\Throwable $error) use (&$info, $folderName): Response {
             $info['upstreamStatus'] = $error instanceof UpstreamError ? $error->httpStatus : null;
             $unavailable = $error instanceof UpstreamError && $error->errorCode === 'attachment_unavailable';
-            return errorResponse($unavailable ? 'attachment_unavailable' : 'sheet_unavailable');
+            // The unavailable message names the configured Drive folder (VACCINE_ATTACHMENT_FOLDER), if any
+            if ($unavailable) {
+                return errorResponse('attachment_unavailable', [], attachmentUnavailableMessage($folderName));
+            }
+            return errorResponse('sheet_unavailable');
         };
         // 2. Metadata only (mimeType, size)
         try {
