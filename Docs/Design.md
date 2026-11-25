@@ -322,36 +322,86 @@ Mobile (≤ 480px)                      Detail (bottom sheet, full height)
 
 ## 6. ファイル構成と責務
 
+### 6-1. Worker 版と共通部分
+
 ```
-VaccineOcrDatabase/SearchPortal/
+VaccineKarte/
 ├─ wrangler.jsonc            Worker 設定（§8-2）
 ├─ package.json              scripts: dev / deploy / test / e2e．devDependency は wrangler のみ
 ├─ .dev.vars.sample          DEV_BYPASS_ACCESS / FIXTURE_MODE / GOOGLE_SA_JSON の雛形（.dev.vars は gitignore）
-├─ README.md                 使い方・セットアップ手順
+├─ README.md / README.en.md  使い方・セットアップ手順
+├─ SECURITY.md / LICENSE     脆弱性の報告手順・ライセンス
 ├─ Docs/Design.md            本書
 ├─ Src/
-│  ├─ Worker.js              入口．設定検査（fail-closed）→ 認証 → ルーティング → ヘッダ付与．I/O はここと下3つだけ
+│  ├─ Worker.js              入口．App.js の createApp を既定ハンドラとして公開するだけ
+│  ├─ App.js                 設定検査（fail-closed）→ 認証 → ルーティング → ヘッダ付与
 │  ├─ Access.js              Cf-Access-Jwt-Assertion 検証．JWKS 取得は fetch 関数を引数で受ける（テストで差し替え）
 │  ├─ GoogleAuth.js          SA JWT 署名とトークン交換・トークンキャッシュ
 │  ├─ SheetSource.js         spreadsheets.get 呼び出し・60秒キャッシュ・stale 制御・Fixture 切替
-│  ├─ Fixture.js             合成データ 30件（全フラグ・空番号・同番号別人・解析不能日付を含む）
+│  ├─ DriveSource.js         添付の Drive メタデータ・本文取得（§10-3）
+│  ├─ SingleFlight.js        同時リクエストで共有する取得処理の一本化（時間制限付き）
+│  ├─ Fixture.js             合成データ 30件（全フラグ・空番号・同番号別人・解析不能日付・添付を含む）
 │  ├─ Records.js             HEADERS・validateHeader・classifyColor・mapRows（純関数）
+│  ├─ Attachments.js         セルのリンク抽出と添付一覧の組み立て（純関数，§10-2）
+│  ├─ ImageVariant.js        JPEG/PNG の WebP 変換可否の判定（純関数＋注入，§10-4）
 │  ├─ Normalize.js           normalizeText・parseDate・parseAge（純関数）
-│  ├─ Search.js              parseQuery・matches・sortRecords・searchRecords・toSummary（純関数）
-│  └─ Http.js                json()/errorResponse()/withSecurityHeaders()/isLocalHost()（純関数）
-├─ Public/
+│  ├─ Search.js              parseQuery・matches・sortRecords・searchRecords・toSummary・toDetail・computeMeta（純関数）
+│  └─ Http.js                json()/errorResponse()/withSecurityHeaders()/isLocalHost()/attachmentResponse()（純関数）
+├─ Public/                   画面（Worker 版・PHP 版で共通）
 │  ├─ index.html             骨格のみ（外部 CSS/JS 参照，インライン無し）
 │  ├─ Styles.css             トークン・レイアウト・コンポーネント
 │  ├─ App.js                 状態管理（query/results/selected）とイベント配線・キーボード
-│  ├─ Api.js                 fetch ラッパ（AbortController・エラー code→文言）
+│  ├─ Api.js                 fetch ラッパ（AbortController・エラー code→文言．添付フォルダ名は /api/meta から）
 │  ├─ Render.js              一覧行・ドロワー・チップ・状態表示の DOM 生成（テンプレート文字列禁止，createElement で XSS 余地を消す）
-│  └─ Icons.svg              シンボル定義（検索・閉じる・コピー・発信）
+│  ├─ Icons.svg              シンボル定義（検索・閉じる・コピー・発信・クリップ）
+│  └─ Favicon.svg / Logo.svg アイコン・ロゴ
+├─ Php/                      共用 PHP サーバ版（§6-2）
 └─ Tests/
-   ├─ Unit/*.test.js         node --test（Normalize / Search / Records / Access / Http / Worker）
-   └─ E2E/RunE2E.py          Playwright(Python)．wrangler dev --local をフィクスチャモードで起動して検証
+   ├─ Unit/*.test.js         node --test（Normalize / Search / Records / Attachments / ImageVariant / Access / GoogleAuth / Http / Worker）
+   └─ E2E/RunE2E.py          Playwright(Python)．フィクスチャモードのサーバ（既定 wrangler dev --local，--backend php で PHP 組み込みサーバ）を起動して検証
 ```
 
-I/O を持つのは `Worker.js / Access.js(fetch部) / GoogleAuth.js / SheetSource.js` の4つだけ．残りは引数→戻り値の純関数で，`node --test` から直接 import できる．
+I/O を持つのは `App.js / Access.js(fetch部) / GoogleAuth.js / SheetSource.js / DriveSource.js` だけ．残りは引数→戻り値の純関数で，`node --test` から直接 import できる．
+
+### 6-2. 共用 PHP サーバ版（`Php/`）
+
+Workers を使えない環境のため，同じ API（§4）を PHP 8.3 以上に移植した版．画面は `Public/` をそのまま使う．認証は Cloudflare Access の代わりに Apache の Basic 認証（HTTPS 必須）で，PHP 側でも認証済みであることを再確認する（Worker の JWT 再検証に相当．未認証なら 503 で全拒否）．必要な拡張は `intl`・`mbstring`・`openssl`・`curl`・`gd`（WebP 対応）．
+
+```
+Php/
+├─ .htaccess                 HTTP→HTTPS リダイレクトの後に Basic 認証．ドットファイル拒否．/api/* を Api.php へ書き換え．
+│                            ^Private(/|$) を 403（二重目の鍵）．静的ファイルに §1-2(6) と同じヘッダと no-store を付与
+├─ Api.php                   /api/* の入口（フロントコントローラ）．開発用フラグは Apache 上では読まない
+├─ Private/                  HTTP では一切配信しない領域
+│  ├─ .htaccess              Require all denied（ルートの <If> に上書きされないよう <If> 内にも重ねて記述）
+│  ├─ Config.php             サイト設定（§1-3．環境変数 → 既定値）
+│  ├─ ServiceAccount.php     鍵（配置時に Tools/MakeServiceAccountPhp.php で作る．gitignore）
+│  ├─ .htpasswd              Basic 認証の利用者（bcrypt．配置時に作る）
+│  ├─ Cache/ / Logs/         暗号化キャッシュとログ（初回アクセスで自動作成．gitignore）
+│  └─ Lib/
+│     ├─ App.php             Src/App.js の移植．認証の再確認 → ルーティング → ヘッダ付与
+│     ├─ GoogleAuth.php      Src/GoogleAuth.js の移植（readonly の2スコープ）
+│     ├─ SheetSource.php     Src/SheetSource.js の移植．60秒キャッシュ・10分 stale をファイルキャッシュで共有
+│     ├─ DriveSource.php     Src/DriveSource.js の移植
+│     ├─ HttpClient.php      Google への HTTPS 呼び出し（curl）と I/O 層共通のエラー型
+│     ├─ SecureCache.php     AES-256-GCM で暗号化し，ロックで保護するファイルキャッシュ（Worker のメモリキャッシュの代わり）
+│     ├─ ImageVariant.php    Src/ImageVariant.js の移植．WebP 変換は Cloudflare Images の代わりに GD
+│     ├─ Records.php / Attachments.php / Normalize.php / Search.php   同名の Src/*.js の移植（純関数）
+│     ├─ Http.php            Src/Http.js の移植（ヘッダ・エラー表）
+│     ├─ JsCompat.php        JS の String()・trim()・Number()・UTF-16 順などの意味を再現する補助
+│     └─ WhatwgUrl.php       Worker の new URL() と同じ結果を返す https URL の最小パーサ
+├─ Tools/                    開発用（サーバには置かない）
+│  ├─ DevRouter.php          PHP 組み込みサーバ用ルータ．Apache＋.htaccess の振る舞い（認証ゲート・/api/*・Private/ 拒否・ヘッダ）を再現
+│  ├─ ExportFixture.mjs      Src/Fixture.js の合成データを Tests/Fixture/FixtureData.json に書き出す
+│  └─ MakeServiceAccountPhp.php   鍵 JSON を Private/ServiceAccount.php の形に変換（標準出力，または --out <path> [--force]）
+└─ Tests/                    開発用（サーバには置かない）
+   ├─ Unit/RunUnitTests.php  I/O 層の単体テスト（キャッシュ・認証ゲート・ルーティング・画像変換・ヘッダ．ネットワーク不要）
+   ├─ Parity/                GenerateGolden.mjs（JS 実装の出力を Golden.json に保存）と RunParity.php（PHP 実装の出力をバイト単位で比較）
+   └─ Fixture/FixtureData.json   ExportFixture.mjs が書き出す合成データ
+```
+
+- 純粋ロジック（正規化・検索・行マッピング・リンク抽出）は JS 版と同じ入力にバイト単位で同じ JSON を返すことをパリティテストで保証する．
+- Worker との違いは I/O 層だけ: PHP はリクエストごとに別プロセスなので，シートのスナップショットとアクセストークンは暗号化ファイルキャッシュに置き，ロックを取った1リクエストが再取得する（他は古いスナップショットで応答）．
 
 ## 7. テスト計画
 
