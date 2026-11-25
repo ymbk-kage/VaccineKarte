@@ -29,6 +29,8 @@ export const ERRORS = {
   unauthorized: { status: 401, message: "ログインが確認できません．ページを再読み込みしてください．" },
   forbidden: { status: 403, message: "このアカウントには閲覧権限がありません．" },
   sheet_layout_changed: { status: 503, message: "データベースの列構成が変わっています．管理者に連絡してください．" },
+  // Spreadsheet ID left empty: retrying cannot help, so staff are sent to the administrator
+  sheet_not_configured: { status: 503, message: "データベースの設定が完了していません．管理者に連絡してください．" },
   sheet_unavailable: { status: 503, message: "データベースに接続できません．しばらくしてから再試行してください．" },
   not_found: { status: 404, message: "該当する記録がありません．" },
   bad_request: { status: 400, message: "検索条件の形式が正しくありません．" },

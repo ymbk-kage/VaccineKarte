@@ -282,6 +282,8 @@ export function createApp({
    * Load records from the source, mapping failures to error responses.
    */
   async function loadData(env, local, info, ctx) {
+    // An empty SHEET_ID is a setup mistake, not an outage: answer before calling Google (fixture mode needs no ID)
+    if (!isFixture(env, local) && !String(env.SHEET_ID ?? "").trim()) return { error: errorResponse("sheet_not_configured") };
     try {
       // waitUntil keeps a refresh started by this request running even if the request itself is cancelled
       const waitUntil = ctx && typeof ctx.waitUntil === "function" ? (promise) => ctx.waitUntil(promise) : undefined;

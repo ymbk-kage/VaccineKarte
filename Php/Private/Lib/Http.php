@@ -23,6 +23,8 @@ const ERRORS = [
     'unauthorized' => [401, 'ログインが確認できません．ページを再読み込みしてください．'],
     'forbidden' => [403, 'このアカウントには閲覧権限がありません．'],
     'sheet_layout_changed' => [503, 'データベースの列構成が変わっています．管理者に連絡してください．'],
+    // Spreadsheet ID left empty: retrying cannot help, so staff are sent to the administrator
+    'sheet_not_configured' => [503, 'データベースの設定が完了していません．管理者に連絡してください．'],
     'sheet_unavailable' => [503, 'データベースに接続できません．しばらくしてから再試行してください．'],
     'not_found' => [404, '該当する記録がありません．'],
     'bad_request' => [400, '検索条件の形式が正しくありません．'],

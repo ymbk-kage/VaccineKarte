@@ -402,6 +402,10 @@ final class App
      */
     private function loadData(bool $local, array &$info): array|Response
     {
+        // An empty sheetId is a setup mistake, not an outage: answer before calling Google (fixture mode needs no ID)
+        if (!$this->isFixture($local) && trim((string) ($this->config['sheetId'] ?? '')) === '') {
+            return errorResponse('sheet_not_configured');
+        }
         try {
             $data = $this->source($local)->load();
             $info['cacheHit'] = $data['cacheHit'];

@@ -303,6 +303,18 @@ test('App: production host never uses the fixture (no key file -> sheet_unavaila
     check($response->status === 503 && str_contains((string) $response->body, 'sheet_unavailable'), (string) $response->body);
 });
 
+test('App: empty sheetId is 503 sheet_not_configured; fixture mode needs no ID', function (): void {
+    $logs = [];
+    // Blank (spaces only) counts as empty; production host so the Google path is taken
+    $app = makeApp([], $logs, ['sheetId' => '  ']);
+    $response = $app->handle(req('GET', '/api/meta', 'vaccine.example.org', 'staff'));
+    check($response->status === 503 && str_contains((string) $response->body, 'sheet_not_configured'), (string) $response->body);
+    // The synthetic fixture still works with no spreadsheet ID
+    $logs = [];
+    $fixture = makeApp(['DEV_BYPASS_AUTH' => '1', 'FIXTURE_MODE' => '1'], $logs, ['sheetId' => '']);
+    check($fixture->handle(req('GET', '/api/meta'))->status === 200);
+});
+
 test('App: search validates content type, origin and JSON', function (): void {
     $logs = [];
     $app = makeApp(['DEV_BYPASS_AUTH' => '1', 'FIXTURE_MODE' => '1'], $logs);

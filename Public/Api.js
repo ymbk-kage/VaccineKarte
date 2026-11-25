@@ -7,6 +7,7 @@ const ERROR_MESSAGES = {
   unauthorized: 'ログインが確認できません．ページを再読み込みしてください．',
   forbidden: 'このアカウントには閲覧権限がありません．',
   sheet_layout_changed: 'データベースの列構成が変わっています．管理者に連絡してください．',
+  sheet_not_configured: 'データベースの設定が完了していません．管理者に連絡してください．',
   sheet_unavailable: 'データベースに接続できません．しばらくしてから再試行してください．',
   not_found: '該当する記録がありません．',
   bad_request: '検索条件の形式が正しくありません．',

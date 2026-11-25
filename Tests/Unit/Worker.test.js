@@ -112,6 +112,24 @@ test("FIXTURE_MODE is ignored on the production hostname", async () => {
   assert.equal((await meta.json()).error.code, "sheet_unavailable");
 });
 
+test("empty SHEET_ID is 503 sheet_not_configured without calling Google; fixture mode needs no ID", async () => {
+  // Count every outbound request so the test proves Google is never contacted
+  let calls = 0;
+  const { app } = makeApp({ fetchFn: async () => { calls += 1; throw new Error("must not be called"); } });
+  // Blank (spaces only) counts as empty; FIXTURE_MODE off so the Google path is taken
+  const env = { ...DEV_ENV, FIXTURE_MODE: "0", SHEET_ID: "  " };
+  const meta = await app.fetch(new Request(`${LOCAL}/api/meta`), env);
+  assert.equal(meta.status, 503);
+  assert.equal((await meta.json()).error.code, "sheet_not_configured");
+  const search = await app.fetch(searchRequest(LOCAL, {}, { Origin: LOCAL }), env);
+  assert.equal(search.status, 503);
+  assert.equal((await search.json()).error.code, "sheet_not_configured");
+  assert.equal(calls, 0);
+  // The synthetic fixture still works with no spreadsheet ID
+  const fixture = await app.fetch(new Request(`${LOCAL}/api/meta`), { ...DEV_ENV, SHEET_ID: "" });
+  assert.equal(fixture.status, 200);
+});
+
 // ---------- API shapes (dev bypass + fixture) ----------
 
 test("GET /api/me returns the dev user", async () => {

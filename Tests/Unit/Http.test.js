@@ -49,6 +49,10 @@ test("design error table statuses", () => {
   assert.equal(ERRORS.forbidden.status, 403);
   assert.equal(ERRORS.sheet_layout_changed.status, 503);
   assert.equal(ERRORS.sheet_unavailable.status, 503);
+  // A missing spreadsheet ID points staff to the administrator instead of suggesting a retry
+  assert.equal(ERRORS.sheet_not_configured.status, 503);
+  assert.ok(ERRORS.sheet_not_configured.message.includes("管理者"));
+  assert.ok(!ERRORS.sheet_not_configured.message.includes("再試行"));
   assert.equal(ERRORS.not_found.status, 404);
   assert.equal(ERRORS.bad_request.status, 400);
   // Attachment codes (Design §10-3)

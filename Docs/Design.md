@@ -55,7 +55,7 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 | `GOOGLE_SA_JSON` | secret | サービスアカウント鍵 JSON の中身そのまま（1秘密で済む） |
 | `ACCESS_TEAM_DOMAIN` | var | 例 `<team>.cloudflareaccess.com`（秘密ではない．棚卸しできるよう `wrangler.jsonc` に置く） |
 | `ACCESS_AUD` | var | Access Application の AUD タグ（同上） |
-| `SHEET_ID` / `SHEET_NAME` | var | スプレッドシート ID（既定は空＝未設定）／ワークシート名（既定 `患者管理`） |
+| `SHEET_ID` / `SHEET_NAME` | var | スプレッドシート ID（既定は空＝未設定．空白だけの値も空とみなし，Google に問い合わせず 503 `sheet_not_configured` を返す．フィクスチャモードでは不要）／ワークシート名（既定 `患者管理`） |
 | `ATTACHMENT_FOLDER_NAME` | var | 添付ファイルを置く Drive フォルダの名前（既定 `""`）．`attachment_unavailable` の画面文言にだけ使う（§10-3）．空なら文言はフォルダ名を出さない一般形になる |
 | `DEV_BYPASS_ACCESS` / `FIXTURE_MODE` | `.dev.vars` のみ | §1-2(3)・§7-3 |
 
@@ -63,7 +63,7 @@ PHP 版（§6-2）の置き場は次のとおり．`Php/Private/Config.php` が�
 
 | 名前（`Config.php` のキー） | 環境変数 | 内容 |
 |---|---|---|
-| `sheetId` | `VACCINE_SHEET_ID` | スプレッドシート ID（既定 `''`＝未設定） |
+| `sheetId` | `VACCINE_SHEET_ID` | スプレッドシート ID（既定 `''`＝未設定．空なら Worker と同じく 503 `sheet_not_configured`） |
 | `sheetName` | `VACCINE_SHEET_NAME` | ワークシート名（既定 `患者管理`） |
 | `attachmentFolder` | `VACCINE_ATTACHMENT_FOLDER` | Worker の `ATTACHMENT_FOLDER_NAME` と同じ意味（既定 `''`） |
 | `serviceAccountPath` | `VACCINE_SA_JSON_PATH` | サービスアカウント鍵（既定 `Private/ServiceAccount.php`．鍵 JSON を返す `.php` ファイルにして，拒否規則が壊れても静的配信されないようにする．`Php/Tools/MakeServiceAccountPhp.php` で作る） |
@@ -134,6 +134,7 @@ export function mapRows(gridRows)                 // -> VaccineRecord[]
 | `unauthorized` | 401 | ログインが確認できません．ページを再読み込みしてください． |
 | `forbidden` | 403 | このアカウントには閲覧権限がありません． |
 | `sheet_layout_changed` | 503 | データベースの列構成が変わっています．管理者に連絡してください． |
+| `sheet_not_configured` | 503 | データベースの設定が完了していません．管理者に連絡してください．（スプレッドシート ID が空．再試行では直らないため，画面に「再試行」ボタンを出さない） |
 | `sheet_unavailable` | 503 | データベースに接続できません．しばらくしてから再試行してください． |
 | `not_found` | 404 | 該当する記録がありません． |
 | `bad_request` | 400 | 検索条件の形式が正しくありません． |
