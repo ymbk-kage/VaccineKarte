@@ -1,0 +1,174 @@
+# Continuous integration: JS unit tests, PHP unit + parity tests, E2E (Worker and PHP backends), secret scan.
+# Every job uses synthetic data only (Src/Fixture.js); no real key, sheet or patient data is ever needed.
+name: CI
+
+# Run on every push and on every pull request
+on:
+  push:
+  pull_request:
+
+# Read-only token: no job writes to the repository
+permissions:
+  contents: read
+
+# Cancel an older run of the same branch/PR when a newer commit arrives
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ------------------------------------------------------------------ JavaScript unit tests
+  js-unit:
+    name: JS unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Fetch the repository
+      - name: Checkout
+        uses: actions/checkout@v7
+      # Node 24 with the npm cache keyed on package-lock.json
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      # Install exactly what package-lock.json pins
+      - name: Install dependencies
+        run: npm ci
+      # node --test Tests/Unit/*.test.js
+      - name: Run unit tests
+        run: npm test
+
+  # ------------------------------------------------------------------ PHP unit + JS/PHP parity
+  php:
+    name: PHP unit and parity tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Fetch the repository
+      - name: Checkout
+        uses: actions/checkout@v7
+      # PHP 8.4 with the extensions shared PHP hosting has enabled
+      - name: Set up PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: intl, mbstring, openssl, curl, gd, sodium
+          coverage: none
+      # Node 24 is needed to regenerate Golden.json from the JS originals
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      # Cache, sheet source, auth gate, routing, image variants and headers (exit code = failure count)
+      - name: Run PHP unit tests
+        run: php Php/Tests/Unit/RunUnitTests.php
+      # Replay the committed Golden.json against the PHP port
+      - name: Run parity tests
+        run: php Php/Tests/Parity/RunParity.php
+      # Regenerate Golden.json (deterministic, timezone independent) and fail if the committed copy is stale
+      - name: Check Golden.json is up to date
+        run: |
+          # Rebuild the golden cases from the current JS sources
+          node Php/Tests/Parity/GenerateGolden.mjs
+          # Any difference means Src/*.js changed without regenerating Golden.json
+          git diff --exit-code Php/Tests/Parity/Golden.json
+
+  # ------------------------------------------------------------------ End-to-end (Playwright, both backends)
+  e2e:
+    name: E2E tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      # Fetch the repository
+      - name: Checkout
+        uses: actions/checkout@v7
+      # Node 24 runs wrangler dev and reads FIXTURE_EXPECTATIONS from Src/Fixture.js
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      # PHP 8.4 for the --backend php run
+      - name: Set up PHP 8.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+          extensions: intl, mbstring, openssl, curl, gd, sodium
+          coverage: none
+      # Python 3.12 drives Playwright
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      # Install wrangler (and the linux workerd binary) from package-lock.json
+      - name: Install npm dependencies
+        run: npm ci
+      # Playwright for Python plus the system libraries Chromium/Chrome need
+      - name: Install Playwright
+        run: |
+          # Python bindings
+          pip install playwright
+          # Bundled Chromium and its OS dependencies (Chrome itself is preinstalled on ubuntu-latest)
+          python -m playwright install --with-deps chromium
+      # Japanese fonts so pages render the same way as on a Japanese desktop
+      - name: Install Japanese fonts
+        run: sudo apt-get install -y --no-install-recommends fonts-noto-cjk
+      # Local-only bypass flags for wrangler dev: keep just the two fixture switches, never the SA JSON line
+      - name: Create .dev.vars from the sample
+        run: grep -E '^(DEV_BYPASS_ACCESS|FIXTURE_MODE)=' .dev.vars.sample > .dev.vars
+      # RunE2E.py refuses a fixture older (mtime) than Src/Fixture.js, and checkout mtimes are arbitrary:
+      # re-export it, then prove the committed copy was already identical
+      - name: Re-export the PHP fixture
+        run: |
+          # Writes Php/Tests/Fixture/FixtureData.json with a fresh mtime
+          node Php/Tools/ExportFixture.mjs
+          # The committed export must match the current Src/Fixture.js
+          git diff --exit-code Php/Tests/Fixture/FixtureData.json
+      # RunE2E.py (line 101) forces extension_dir=<dir of PHP_BINARY>/ext, the Windows layout.
+      # On Linux that is /usr/bin/ext, which would stop every shared extension from loading:
+      # point that path at the real extension directory so the forced setting still works
+      - name: Map <php dir>/ext to the real extension directory
+        run: |
+          # Directory of the php binary RunE2E.py derives the ext path from
+          php_dir="$(dirname "$(php -r 'echo PHP_BINARY;')")"
+          # Extension directory configured by setup-php
+          ext_dir="$(php -r 'echo ini_get("extension_dir");')"
+          # Create the link only when nothing exists there yet
+          if [ ! -e "$php_dir/ext" ]; then sudo ln -s "$ext_dir" "$php_dir/ext"; fi
+          # Show the result and confirm the extensions load with the forced flags
+          ls -ld "$php_dir/ext"
+          php -d "extension_dir=$php_dir/ext" -r 'foreach (["intl","mbstring","openssl","curl","gd"] as $e) { if (!extension_loaded($e)) { fwrite(STDERR, "missing $e\n"); exit(1); } } echo "extensions OK\n";'
+      # 17 scenarios against wrangler dev in fixture mode (real Chrome via the default --channel chrome)
+      - name: E2E (Worker backend)
+        run: python Tests/E2E/RunE2E.py
+      # Same scenarios against the PHP port on php -S; runs even if the Worker run failed
+      - name: E2E (PHP backend)
+        if: ${{ !cancelled() }}
+        run: python Tests/E2E/RunE2E.py --backend php
+      # Failure evidence (HTML, PNG, raw HTTP JSON) and server logs that RunE2E.py writes to logs/
+      - name: Upload E2E evidence
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: e2e-logs
+          path: logs/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # ------------------------------------------------------------------ Secret scan
+  secrets:
+    name: Secret scan (gitleaks)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Full history so every commit is scanned, not only the tip
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # Scan the commits of this push / pull request for keys and tokens
+      - name: Run gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
