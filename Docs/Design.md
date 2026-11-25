@@ -52,11 +52,24 @@ Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 | 名前 | 種別 | 内容 |
 |---|---|---|
-| `GOOGLE_SA_JSON` | secret | `ServiceAccount.json` の中身そのまま（1秘密で済み，Python 側と同じ鍵を使い回せる） |
-| `ACCESS_TEAM_DOMAIN` | var | 例 `<team>.cloudflareaccess.com`（秘密ではない．棚卸しできるよう toml に置く） |
+| `GOOGLE_SA_JSON` | secret | サービスアカウント鍵 JSON の中身そのまま（1秘密で済む） |
+| `ACCESS_TEAM_DOMAIN` | var | 例 `<team>.cloudflareaccess.com`（秘密ではない．棚卸しできるよう `wrangler.jsonc` に置く） |
 | `ACCESS_AUD` | var | Access Application の AUD タグ（同上） |
-| `SHEET_ID` / `SHEET_NAME` | var | `` / `患者管理`（旧 `シート1`．2026-10-16 時点の実シート名） |
+| `SHEET_ID` / `SHEET_NAME` | var | スプレッドシート ID（既定は空＝未設定）／ワークシート名（既定 `患者管理`） |
+| `ATTACHMENT_FOLDER_NAME` | var | 添付ファイルを置く Drive フォルダの名前（既定 `""`）．`attachment_unavailable` の画面文言にだけ使う（§10-3）．空なら文言はフォルダ名を出さない一般形になる |
 | `DEV_BYPASS_ACCESS` / `FIXTURE_MODE` | `.dev.vars` のみ | §1-2(3)・§7-3 |
+
+PHP 版（§6-2）の置き場は次のとおり．`Php/Private/Config.php` が環境変数を読み，未設定なら既定値を使う（サーバで環境変数を設定できなければ `Config.php` に直接書く）．
+
+| 名前（`Config.php` のキー） | 環境変数 | 内容 |
+|---|---|---|
+| `sheetId` | `VACCINE_SHEET_ID` | スプレッドシート ID（既定 `''`＝未設定） |
+| `sheetName` | `VACCINE_SHEET_NAME` | ワークシート名（既定 `患者管理`） |
+| `attachmentFolder` | `VACCINE_ATTACHMENT_FOLDER` | Worker の `ATTACHMENT_FOLDER_NAME` と同じ意味（既定 `''`） |
+| `serviceAccountPath` | `VACCINE_SA_JSON_PATH` | サービスアカウント鍵（既定 `Private/ServiceAccount.php`．鍵 JSON を返す `.php` ファイルにして，拒否規則が壊れても静的配信されないようにする．`Php/Tools/MakeServiceAccountPhp.php` で作る） |
+| `cacheDir` / `logDir` | `VACCINE_CACHE_DIR` / `VACCINE_LOG_DIR` | 暗号化キャッシュとログの置き場（既定 `Private/Cache`・`Private/Logs`） |
+| 認証 | （`.htaccess` の `AuthUserFile`） | Basic 認証の `Private/.htpasswd`（bcrypt） |
+| `DEV_BYPASS_AUTH` / `FIXTURE_MODE` / `FIXTURE_DATA_PATH` | PHP 組み込みサーバのみ | Worker の迂回フラグ・フィクスチャモードに相当．`Php/Tools/DevRouter.php` 経由で localhost のときだけ効き，Apache 上では読まれない |
 
 ## 2. データアクセス
 
