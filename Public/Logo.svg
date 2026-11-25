@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 32" width="48" height="32">
+  <!-- Generic VaccineKarte mark: a shield (privacy) with a check (vaccination record) -->
+  <path d="M24 2 L38 7 V15 C38 23 32 28 24 30 C16 28 10 23 10 15 V7 Z" fill="#1f4578"/>
+  <!-- Check mark inside the shield -->
+  <path d="M17 16 L22 21 L31 11" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
