@@ -403,5 +403,30 @@ test('errorResponse: unknown codes become internal_error; HTML page never echoes
     check($h->status === 503 && !str_contains((string) $h->body, '<script'));
 });
 
+test('App: attachmentFolder reaches /api/meta and the attachment_unavailable message', function (): void {
+    $logs = [];
+    // Not configured: empty in meta and the default wording in the error
+    $plain = makeApp(['DEV_BYPASS_AUTH' => '1', 'FIXTURE_MODE' => '1'], $logs);
+    $meta = json_decode((string) $plain->handle(req('GET', '/api/meta'))->body, true);
+    check($meta['attachmentFolder'] === '', 'meta default');
+    $error = json_decode((string) $plain->handle(req('GET', '/api/records/31/attachments/0'))->body, true);
+    check($error['error']['message'] === ERRORS['attachment_unavailable'][1], 'default message');
+    // Configured (with spaces): trimmed name in meta and in the error
+    $named = makeApp(['DEV_BYPASS_AUTH' => '1', 'FIXTURE_MODE' => '1'], $logs, ['attachmentFolder' => ' FormFiles ']);
+    $meta = json_decode((string) $named->handle(req('GET', '/api/meta'))->body, true);
+    check($meta['attachmentFolder'] === 'FormFiles', 'meta configured');
+    $error = json_decode((string) $named->handle(req('GET', '/api/records/31/attachments/0'))->body, true);
+    check($error['error']['code'] === 'attachment_unavailable' && str_contains($error['error']['message'], '「FormFiles」フォルダ'), 'named message');
+});
+
+test('errorResponse: a message override applies to known codes only', function (): void {
+    // Known code keeps its status and uses the override
+    $known = json_decode((string) errorResponse('attachment_unavailable', [], 'custom')->body, true);
+    check($known['error']['message'] === 'custom');
+    // Unknown code ignores the override
+    $unknown = errorResponse('no_such_code', [], 'custom');
+    check($unknown->status === 500 && !str_contains((string) $unknown->body, 'custom'));
+});
+
 echo "\n{$passes} passed, {$failures} failed\n";
 exit($failures);
